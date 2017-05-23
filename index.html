@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fahrtenbuch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    </head>
+    <body>
+<!---Homescreen----------------------------------------------------------------------------->
+        <div data-role="page" data-theme="b" id="home">
+            <div data-role="header">
+                <h1>Fahrtenbuch - Menü</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <ul data-role="listview" data-inset="true" data-filter="true">
+                    <li>
+                        <a href="#kunden" data-transition="slide">
+                            <h2>Kunden verwalten</h2>
+                            <p>Kunde anlegen, suchen, ändern oder löschen</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#fahrten" data-transition="slide">
+                            <h2>Fahrten verwalten</h2>
+                            <p>Fahrt anlegen, suchen, ändern oder löschen</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tankbelege" data-transition="slide">
+                            <h2>Tankbelege verwalten</h2>
+                            <p>Kilometerstand und Kosten erfassen, Tankbelege fotografieren und ablegen</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#statistik" data-transition="slide">
+                            <h2>Statistik</h2>
+                            <p>Statistik-Tools für Kunden und Fahrten</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#einstellungen" data-transition="slide">
+                            <h2>Einstellungen</h2>
+                            <p>Heimatadresse, Start-Kilometerstand, Design, Werkszustand</p>
+                        </a>
+                    </li>
+                </ul>
+                <img width="100%" height="100%" id="Auto" src="images/logo.png" alt="Auto">
+            </div>
+        </div>
+<!---Kunden verwalten----------------------------------------------------------------------->
+        <div data-role="page" data-theme="b" id="kunden">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Kunden verwalten</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>
+<!---Fahrten verwalten---------------------------------------------------------------------->
+        <div data-role="page" data-theme="b" id="fahrten">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Fahrten verwalten</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>   
+<!---Tankbelege verwalten------------------------------------------------------------------->
+        <div data-role="page" data-theme="b" id="tankbelege">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Tankbelege verwalten</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>   
+<!---Statistik------------------------------------------------------------------------------>
+        <div data-role="page" data-theme="b" id="statistik">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Statistik</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>   
+<!---Einstellungen-------------------------------------------------------------------------->
+        <div data-role="page" data-theme="b" id="einstellungen">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Einstellungen</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+              <ul data-role="listview" data-inset="true" data-filter="true">
+                    <li>
+                        <a href="#heimat" data-transition="slide">
+                            <h2>Heimatadresse ändern</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#anfangskilometer" data-transition="slide">
+                            <h2>Anfangskilometerstand festlegen</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#privat" data-transition="slide">
+                            <h2>Privat oder Gesch&aumlftlich</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#design" data-transition="slide">
+                            <h2>Design ändern</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#standardeinstellungen" data-transition="slide">
+                            <h2>Standardeinstellungen wiederherstellen</h2>
+                        </a>
+                    </li>
+                </ul>
+            
+            </div>
+        </div>   
+<!---Einstellungen - Heimatadresse ändern------------------------------------------------>
+        <div data-role="page" data-theme="b" id="heimat">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Heimatadresse ändern</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>
+<!---Einstellungen - Anfangskilometerstand-------------------------------------------------->
+        <div data-role="page" data-theme="b" id="anfangskilometer">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Anfangskilometerstand ändern</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>  
+<!---Einstellungen - Privat oder Geschäftlich----------------------------------------------->
+        <div data-role="page" data-theme="b" id="privat">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Privat oder Geschäftlich</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>  
+<!---Einstellungen - Design ändern---------------------------------------------------------->
+        <div data-role="page" data-theme="b" id="design">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Design ändern</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>  
+<!---Einstellungen - Standardeinstellungen-------------------------------------------------->
+        <div data-role="page" data-theme="b" id="standardeinstellungen">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+                <h1>Standardeinstellungen wiederherstellen</h1>
+                <a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div role="main" class="ui-content">
+            </div>
+        </div>  
+    </body>
+</html>
