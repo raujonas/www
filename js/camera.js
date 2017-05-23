@@ -1,22 +1,21 @@
-function startApp(){
-  #('camera').on('click',aufnehmen);
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    console.log(navigator.camera);
 }
 
 function aufnehmen() {
-      // Take a photo and retrieve the image's file location:
-      navigator.camera.getPicture(onSuccess, onFail, {
-        quality: 50, 
-        destinationType: Camera.DestinationType.FILE_URI,
-        sourceType: Camera.PictureSourceType.CAMERA 
-      });             
-}
+   navigator.camera.getPicture(onSuccess, onFail, { 
+      quality: 50,
+      destinationType: Camera.DestinationType.FILE_URI
+   });
 
-function onSuccess(imageURI){
-  $('#image').show();
-  $('#image').attr('src',imageURI);
-  $('#camera').hide();
-}
+   function onSuccess(imageData) {
+      var image = document.getElementById('myImage');
+      image.src = "data:image/jpeg;base64," + imageData;
+   }
 
-function onFail(message){
-  alert('Failed because: ' + message);
+   function onFail(message) {
+      alert('Failed because: ' + message);
+   }
 }
