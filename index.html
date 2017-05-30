@@ -60,17 +60,8 @@
                 <a href="#kundeanlegen" data-icon="edit" data-iconpos="notext" data-transition="slide"></a>
             </div>
             <div role="main" class="ui-content">
-                <ul data-role="listview" data-inset="true" data-filter="true">
-                    <li>
-                        <a href="#" data-transition="slide">
-                            <h2>Kunde 1</h2>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" data-transition="slide">
-                            <h2>Kunde 2</h2>
-                        </a>
-                    </li>
+                <ul data-role="listview" data-inset="true" data-filter="true" id="kundenuebersicht">
+                    <!--Inhalt wird dynamisch befüllt-->
                 </ul>
             </div>
         </div>
@@ -82,7 +73,17 @@
                 <a href="#" data-icon="check" data-iconpos="notext" data-transition="slide"></a>
             </div>
             <div role="main" class="ui-content">
-                
+                <p>Kontaktdaten:</p>
+                <input type="text" id="titel" placeholder="Name des Unternehmens"/>
+                <input type="text" id="titel" placeholder="Ansprechpartner im Unternehmen"/>
+                <input type="text" id="titel" placeholder="Telefonnummer"/>
+                <p>Adresse:</p>
+                <input type="text" id="titel" placeholder="Straße"/>
+                <input type="text" id="titel" placeholder="PLZ"/>
+                <input type="text" id="titel" placeholder="Stadt"/>
+                <input type="text" id="titel" placeholder="Land"/>
+                <p>Zusätzliche Informationen:</p>
+				<textarea id="text" placeholder="Notiztext"></textarea>
             </div>
         </div>
 <!---Fahrten verwalten---------------------------------------------------------------------->
