@@ -35,6 +35,15 @@ function successCB() {
     alert("success!");
 }
 
+//------------------- Kunden verwalten -----------------------------------------
+//Kunde hinzufügen
+function addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
+    db.transaction(function(tx){
+        tx.executeSql("INSERT INTO  Kunden (knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", [knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text], callback);
+    } errorCB, successCB);
+    alert('Kunde angelegt');
+}
+
 //------------------- Belege (Bilder) hinzufügen und auslesen-------------------
 //Hinzufügen
 function addBelege(Pfad){
