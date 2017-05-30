@@ -43,12 +43,12 @@ function addBelege(Pfad){
     }, errorCB, successCB);
 }
 //Auslesen   //TO do
-//function getBelege(id, callback){
-//    db.transaction(function(tx){
-//      tx.executeSql("SELECT Bild from BELEGE WHERE ID = ?", [id], ergebnis);
-//    }, errorCB, successCB);
-//    return Pfad;
-//}         
+function getBelege(id){
+    db.transaction(
+      function(tx){tx.executeSql("SELECT Bild from BELEGE WHERE ID = ?", [id], ergebnis, errorCB;}, 
+      errorCB, 
+      successCB);
+}         
 
 //function ergebnis(tx, )       
 
