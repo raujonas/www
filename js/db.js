@@ -44,6 +44,13 @@ function addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strass
     alert('Kunde angelegt');
 }
 
+//Kunde auslesen
+function getAlleKundenDB(){
+    db.transaction(function(tx){
+        tx.executeSql("SELECT * FROM Kunden ORDER BY knr ASC"), [], kundenVerarbeiten, callback);
+    }, errorCB, successCB);
+}
+
 //------------------- Belege (Bilder) hinzufügen und auslesen-------------------
 //Hinzufügen
 function addBelege(Pfad){
