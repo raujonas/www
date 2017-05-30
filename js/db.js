@@ -28,7 +28,7 @@ function populateDB(tx) {
 }
 //Wenn was schief geht
 function errorCB(err) {
-    alert("Error processing SQL: "+err.code);
+    alert("Error processing SQL: "+err.code + " "+err.message);
 }
 //bei Erfolg
 function successCB() {
@@ -43,12 +43,14 @@ function addBelege(Pfad){
     }, errorCB, successCB);
 }
 //Auslesen   //TO do
-function getBelege(id){
+function getBelege(){
     db.transaction(
-      function(tx){tx.executeSql("SELECT Bild from BELEGE WHERE ID = ?", [id], ergebnis, errorCB;}, 
+      function(tx){tx.executeSql("SELECT Bild from BELEGE", ergebnis, errorCB);}, 
       errorCB, 
       successCB);
 }         
 
-//function ergebnis(tx, )       
+function ergebnis(tx, results){
+  alert("ergebnis wurde aufgerufen!!!");  
+}       
 
