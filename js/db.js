@@ -1,10 +1,11 @@
-//Datenbank-Funktionen
-
 document.addEventListener("deviceready", onDeviceReady, false);
+
+//Datenbank-Funktionen
 
 var db;
 
 function onDeviceReady() {
+  alert("ondevice");
   //Verbindung zur Datenbank aufbauen
   db = openDatabase('fahrtenbuch', '1.0', 'Datenbank Fahrtenbuch', 1000000);  //Argumente: Datenbankname, Versionsnummer, Beschreibung, Geschätzte Größe
   //Datenbank erstellen
@@ -14,6 +15,7 @@ function onDeviceReady() {
 //-----------------------Datenbank erstellen------------------------------------
 //Was soll erstellt werden?
 function populateDB(tx) {
+    alert("populate");
     //Tabelle für Tests
     tx.executeSql('DROP TABLE IF EXISTS DEMO');
     tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
@@ -72,7 +74,8 @@ function ergebnis(tx, results){
   alert("Anzahl der Bilder" + len)
   if ( len > 0) {                           
     for(var i=0; i < len; i++){
-      $("#BilderListe").append('<li><img src="'+ results.rows[i].Bild +'" id="'+ results.rows[i].ID +'" style="display: none; width: 100%;"/></li>');
+      $("#BilderListe").append('<li><img src="'+ results.rows[i].Bild +'" id="'+ results.rows[i].ID +'"/></li>');
+      //$("#BilderListe").append('<li><img src="'+ results.rows[i].Bild +'" id="'+ results.rows[i].ID +'" style="display: none; width: 100%;"/></li>');
       alert('<li><img src="'+ results.rows[i].Bild +'" id="'+ i +'" style="display: none; width: 100%;"/></li>');
       //var bild = results.rows[i].Bild;
       //alert(bild);

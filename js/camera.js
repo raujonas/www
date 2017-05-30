@@ -5,7 +5,7 @@ function onDeviceReady() {
 }
 
 function aufnehmen() {                //Kamera starten
-   navigator.camera.getPicture(onSuccess, onFail, { 
+      navigator.camera.getPicture(onSuccess, onFail, { 
       quality: 50,
       destinationType: Camera.DestinationType.FILE_URI
    });
