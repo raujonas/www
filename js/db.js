@@ -19,6 +19,9 @@ function populateDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+    //Tabelle für Kunden erstellen
+    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (ID INTEGER PRIMARY KEY NOT NULL)')
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
     tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT)');

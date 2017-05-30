@@ -9,6 +9,7 @@
         <script src="cordova.js"></script>      <!-- Für Kamera notwendig -->
         <script src="js/camera.js"></script>    <!-- Funktionen für die Kamera -->
         <script src="js/db.js"></script>    <!-- Funktionen für Datenbank -->
+        <script src="js/scipts.js"></script>    <!-- Funktionen für Buttons -->
     </head>
     <body>
 <!---Homescreen----------------------------------------------------------------------------->
@@ -70,18 +71,19 @@
             <div data-role="header">
                 <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
                 <h1>Neuen Kunden anlegen</h1>
-                <a href="#" data-icon="check" data-iconpos="notext" data-transition="slide"></a>
+                <a href="#" data-icon="check" data-iconpos="notext" data-transition="slide" id="kanlegen"></a>
             </div>
             <div role="main" class="ui-content">
                 <p>Kontaktdaten:</p>
-                <input type="text" id="titel" placeholder="Name des Unternehmens"/>
-                <input type="text" id="titel" placeholder="Ansprechpartner im Unternehmen"/>
-                <input type="text" id="titel" placeholder="Telefonnummer"/>
+                <input type="text" id="knr" placeholder="Kundennummer"/>
+                <input type="text" id="nameunternehmen" placeholder="Name des Unternehmens"/>
+                <input type="text" id="ansprechpartner" placeholder="Ansprechpartner im Unternehmen"/>
+                <input type="text" id="telefonnummer" placeholder="Telefonnummer"/>
                 <p>Adresse:</p>
-                <input type="text" id="titel" placeholder="Straße"/>
-                <input type="text" id="titel" placeholder="PLZ"/>
-                <input type="text" id="titel" placeholder="Stadt"/>
-                <input type="text" id="titel" placeholder="Land"/>
+                <input type="text" id="strasse" placeholder="Straße"/>
+                <input type="text" id="plz" placeholder="PLZ"/>
+                <input type="text" id="stadt" placeholder="Stadt"/>
+                <input type="text" id="land" placeholder="Land"/>
                 <p>Zusätzliche Informationen:</p>
 				<textarea id="text" placeholder="Notiztext"></textarea>
             </div>
