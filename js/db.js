@@ -6,7 +6,7 @@ var db;
 
 function onDeviceReady() {
   //Verbindung zur Datenbank aufbauen
-  db = openDatabase('fahrtenbuch', '1.0', 'Datenbank Fahrtenbuch', 1000000);  //Argumente: Datenbankname, Versionsnummer, Beschreibung, Geschätzte Größe
+  db = openDatabase('fahrtenbuch', '1.0', 'Datenbank Fahrtenbuch', 1000000);  //Argumente: Datenbankname, Versionsnummer, Beschreibung, GeschÃ¤tzte GrÃ¶ÃŸe
   //Datenbank erstellen
   db.transaction(populateDB, errorCB, successCB);
 }
@@ -14,12 +14,12 @@ function onDeviceReady() {
 //-----------------------Datenbank erstellen------------------------------------
 //Was soll erstellt werden?
 function populateDB(tx) {
-    //Tabelle für Tests
+    //Tabelle fÃ¼r Tests
     tx.executeSql('DROP TABLE IF EXISTS DEMO');
     tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
-    //Tabelle für Belege (Bilder)
+    //Tabelle fÃ¼r Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
     tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT)');
 }
@@ -32,8 +32,8 @@ function successCB() {
     alert("success!");
 }
 
-//------------------- Belege (Bilder) hinzufügen und auslesen-------------------
-//Hinzufügen
+//------------------- Belege (Bilder) hinzufÃ¼gen und auslesen-------------------
+//HinzufÃ¼gen
 function addBelege(Pfad){
     db.transaction(function(tx){
       tx.executeSql("INSERT INTO BELEGE (Bild) VALUES (?)", [Pfad]);
