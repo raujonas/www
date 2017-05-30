@@ -54,12 +54,19 @@ function addBelege(Pfad){
 //Auslesen   //TO do
 function getBelege(){
     db.transaction(
-      function(tx){tx.executeSql("SELECT Bild from BELEGE", ergebnis, errorCB);}, 
+      function(tx){tx.executeSql("SELECT Bild FROM BELEGE", [],ergebnis, errorCB);}, 
       errorCB, 
       successCB);
 }         
 
 function ergebnis(tx, results){
-  alert("ergebnis wurde aufgerufen!!!");  
+  var len = results.rows.length;
+  if ( len > 0) {
+    alert("Anzahl der Bilder" + len)
+    for(var i=0; i < len; i++){
+      var bild = results.rows[i].Bild;
+      alert(bild);
+    }
+  }
 }       
 
