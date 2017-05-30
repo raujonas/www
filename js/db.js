@@ -35,6 +35,22 @@ function successCB() {
     alert("success!");
 }
 
+//------------------- Kunden verwalten -----------------------------------------
+//Kunde hinzufügen
+function addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
+    db.transaction(function(tx){
+        tx.executeSql("INSERT INTO  Kunden (knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", [knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text], callback);
+    } errorCB, successCB);
+    alert('Kunde angelegt');
+}
+
+//Kunde auslesen
+function getAlleKundenDB(){
+    db.transaction(function(tx){
+        tx.executeSql("SELECT * FROM Kunden ORDER BY knr ASC"), [], kundenVerarbeiten, callback);
+    }, errorCB, successCB);
+}
+
 //------------------- Belege (Bilder) hinzufügen und auslesen-------------------
 //Hinzufügen
 function addBelege(Pfad){
