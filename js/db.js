@@ -51,13 +51,16 @@ function getBelege(){
 }         
 
 function ergebnis(tx, results){
-  var len = results.rows.length;
-  if ( len > 0) {
-    alert("Anzahl der Bilder" + len)
+  $("#BilderListe").empty();
+  var len = results.rows.length;  
+  alert("Anzahl der Bilder" + len)
+  if ( len > 0) {                           
     for(var i=0; i < len; i++){
-      var bild = results.rows[i].Bild;
-      alert(bild);
+      $("#BilderListe").append('<li><img src="'+ results.rows[i].Bild +'" id="'+ results.rows[i].ID +'" style="display: none; width: 100%;"/></li>');
+      alert('<li><img src="'+ results.rows[i].Bild +'" id="'+ i +'" style="display: none; width: 100%;"/></li>');
+      //var bild = results.rows[i].Bild;
+      //alert(bild);
     }
   }
+  $("#BilderListe").listview('refresh'); 
 }       
-
