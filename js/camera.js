@@ -5,14 +5,14 @@ function onDeviceReady() {
 }
 
 function aufnehmen() {                //Kamera starten
-   navigator.camera.getPicture(onSuccess, onFail, { 
+      navigator.camera.getPicture(onSuccess, onFail, { 
       quality: 50,
       destinationType: Camera.DestinationType.FILE_URI
    });
 
    function onSuccess(imageData) {     // Wenn ein Bild erfolgreich aufgenommen wurde
-      $('#image').show();
-      $('#image').attr('src', imageData);
+      //$('#image').show();
+      //$('#image').attr('src', imageData);
       addBelege(imageData);           //Bild zur Datenbank hinzufügen
       //$('#camera').hide();
    }
