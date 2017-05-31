@@ -23,12 +23,12 @@ function addKunde(){
 }
 
 function fuegeKundenInListViewEin(){
-    alert('fuegeKundenInListViewEin aufgerufen');
     getAlleKundenDB(function(tx, results){
         var len = results.rows.length;
+        alert('fuegeKundenInListViewEin aufgerufen');
         if (len > 0){
             for (var i=0; i<len; i++){
-                
+                $('#kundenuebersicht').append('<li>TEST</li>');
             }
         } else {
             
