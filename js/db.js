@@ -23,7 +23,8 @@ function populateDB(tx) {
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
     //Tabelle für Kunden erstellen
     tx.executeSql('DROP TABLE IF EXISTS KUNDEN');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (ID INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN TEXT, ANSPRECHPARTNER TEXT, TELEFON TEXT, STRASSE TEXT, PLZ INT, STADT TEXT, LAND TEXT, NOTIZ TEXT)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, NOTIZ)');
+    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, notiz) VALUES (123, "Test AG", "Herr Test", 456, "Test Strasse", 789, "Test Stadt", "Test Land", "Test Notiz")');
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
     tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT)');
@@ -39,7 +40,30 @@ function successCB() {
 
 //------------------- Kunden verwalten -----------------------------------------
 //Kunde hinzufügen
+/*function addKunde(knr, tx){
+    tx.executeSql("INSERT INTO Kunden (knr) VALUES (?)", [knr], successCB, errorCB);
+}*/
 
+//Alle Kunden bekommen
+function getAlleKunden(){
+    db.transaction(function(tx){
+        tx.executeSql("SELECT * FROM Kunden", [], kundenInListView, errorCB);
+    })
+}
+
+function kundenInListView(tx, results){
+    alert("hi");
+    var len = results.rows.length;
+    if (len > 0){
+        for (var i=0; i<len; i++){
+            alert("hihi");
+            $('#kundenuebersicht').append('<li><a href="#kundeanlegen" knr="' + results.rows[i].knr + '"data-transition="slide">' + results.rows[i].nameunternehmen + '</a></li>');
+            $('#kundenuebersicht').listview('refresh');
+        }
+    } else {
+        alert("Tabelle ist leer");
+    }
+}
 
 //------------------- Belege (Bilder) hinzufügen und auslesen-------------------
 //Hinzufügen
