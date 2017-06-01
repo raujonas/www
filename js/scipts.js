@@ -9,21 +9,26 @@ function startApp(){
 function addKunde(){
     alert('addKunde() aufgerufen');
     
-    var knr = $("#knr").text();
-    alert(knr);
+    var knr = $('#knr').val();
+    var nameunternehmen = $('#nameunternehmen').val();
+    var ansprechpartner = $('#ansprechpartner').val();
+    var telefonnummer = $('#telefonnummer').val();
+    var strasse = $('#strasse').val();
+    var plz = $('#plz').val();
+    var stadt = $('#stadt').val();
+    var land = $('#land').val();
+    var text = $('#infos').val();
     
-    var nameunternehmen = $('#nameunternehmen').text();
-    var ansprechpartner = $('#ansprechpartner').text();
-    var telefonnummer = $('#telefonnummer').text();
-    var strasse = $('#strasse').text();
-    var plz = $('#plz').text();
-    var stadt = $('#stadt').text();
-    var land = $('#land').text();
-    var text = $('#text').text();
+    alert(knr + ' ' + nameunternehmen + ' ' +  ansprechpartner + ' ' +  telefonnummer + ' ' +  strasse + ' ' +  plz + ' ' +  stadt + ' ' +  land + ' ' +  text);
+    
+    if (knr.length == 0) {
+		alert('Bitte KNR angeben! (PRIMARY KEY)');
+		return;
+	}
     
     addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
     
-    
+    history.back();
 }
 
 function fuegeKundenInListViewEin(){
