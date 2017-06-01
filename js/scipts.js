@@ -1,13 +1,17 @@
 document.addEventListener("deviceready", startApp, false);
 
 function startApp(){
-    $('#liKunden').on('click',fuegeKundenInListViewEin);
     // An dieser Stelle die Buttons mit Listener einfügen:
+    alert('startApp');
     $('#kanlegen').on('click',addKunde);
 }
 
 function addKunde(){
-    var knr = $('#knr').text();
+    alert('addKunde() aufgerufen');
+    
+    var knr = $("#knr").text();
+    alert(knr);
+    
     var nameunternehmen = $('#nameunternehmen').text();
     var ansprechpartner = $('#ansprechpartner').text();
     var telefonnummer = $('#telefonnummer').text();
@@ -19,7 +23,7 @@ function addKunde(){
     
     addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
     
-    alert('addKunde() aufgerufen');
+    
 }
 
 function fuegeKundenInListViewEin(){
