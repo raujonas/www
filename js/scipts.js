@@ -7,15 +7,15 @@ function startApp(){
 }
 
 function addKunde(){
-    var knr = $('#knr').val();
-    var nameunternehmen = $('#nameunternehmen').val();
-    var ansprechpartner = $('#ansprechpartner').val();
-    var telefonnummer = $('#telefonnummer').val();
-    var strasse = $('#strasse').val();
-    var plz = $('#plz').val();
-    var stadt = $('#stadt').val();
-    var land = $('#land').val();
-    var text = $('#text').val();
+    var knr = $('#knr').text();
+    var nameunternehmen = $('#nameunternehmen').text();
+    var ansprechpartner = $('#ansprechpartner').text();
+    var telefonnummer = $('#telefonnummer').text();
+    var strasse = $('#strasse').text();
+    var plz = $('#plz').text();
+    var stadt = $('#stadt').text();
+    var land = $('#land').text();
+    var text = $('#text').text();
     
     addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
     
