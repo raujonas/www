@@ -51,11 +51,37 @@ function kzuruecksetzen(){
     $('#infos').val('');
 }
 
+function kundeDarstellen(tx, results){
+    alert("kundeDarstellen");
+    $('#knr').val(results.rows[0].KNR);
+    $('#nameunternehmen').val(results.rows[0].NAMEUNTERNEHMEN);
+    $('#ansprechpartner').val(results.rows[0].ANSPRECHPARTNER);
+    $('#telefonnummer').val(results.rows[0].TELEFON);
+    $('#strasse').val(results.rows[0].STRASSE);
+    $('#plz').val(results.rows[0].PLZ);
+    $('#stadt').val(results.rows[0].STADT);
+    $('#land').val(results.rows[0].LAND);
+    $('#infos').val(results.rows[0].INFOS);
+}
+
+function kundenInListView(tx, results){
+    var len = results.rows.length;
+    if (len > 0){
+        for (var i=0; i<len; i++){
+            var knr = results.rows[i].KNR;
+            $('#kundenuebersicht').append('<li><a href="#kundeanlegen" data-knr="' + knr + '" data-transition="slide">' + results.rows[i].NAMEUNTERNEHMEN + '</a></li>');
+            $('#kundenuebersicht').listview('refresh');
+        }
+    } else {
+        alert("Tabelle ist leer");
+    }
+}
+
 function zeigeKundeAn(kundeElement){
-    //alert('zeigeKundeAn', $(kundeElement),$(kundeElement).data('data-knr'));
     console.log(kundeElement,"kundeElement");
+    console.log($(kundeElement).attr('data-knr'),"KNR");
     var knr = $(kundeElement).attr('data-knr');
-//    getKunde(knr);
+    getKunde(knr);
 }
 
 function fuegeKundenInListViewEin(){
