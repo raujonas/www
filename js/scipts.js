@@ -3,12 +3,12 @@ document.addEventListener("deviceready", startApp, false);
 function startApp(){
     // An dieser Stelle die Buttons mit Listener einfügen:
     alert('startApp');
+    getAlleKunden();
     $('#kanlegen').on('click',addKunde);
     $('kabbrechen').on('click',kzuruecksetzen);
-    $(document).on('click', '#kundenuebersicht', function(){
+    $(document).on('click', '#kundenuebersicht a', function(){
         zeigeKundeAn(this);
     });
-    getAlleKunden();
     alert("fertig");
 }
 
@@ -31,6 +31,7 @@ function addKunde(){
 		alert('Bitte KNR angeben! (PRIMARY KEY)');
 		return;
 	}
+    
     kzuruecksetzen();
         
 //    addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, //text);
@@ -51,9 +52,10 @@ function kzuruecksetzen(){
 }
 
 function zeigeKundeAn(kundeElement){
-    alert('zeigeKundeAn');
-    var knr = $(kundeElement).text();
-    alert(knr);
+    //alert('zeigeKundeAn', $(kundeElement),$(kundeElement).data('data-knr'));
+    console.log(kundeElement,"kundeElement");
+    var knr = $(kundeElement).attr('data-knr');
+//    getKunde(knr);
 }
 
 function fuegeKundenInListViewEin(){
