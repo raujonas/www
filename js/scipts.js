@@ -5,7 +5,7 @@ function startApp(){
     alert('startApp');
     getAlleKunden();
     $('#kanlegen').on('click',addKunde);
-    $('kabbrechen').on('click',kzuruecksetzen);
+    $(document).on('click', '#kabbrechen', kzuruecksetzen);
     $(document).on('click', '#kundenuebersicht a', function(){
         zeigeKundeAn(this);
     });
@@ -48,7 +48,6 @@ function kzuruecksetzen(){
 
 // Ein Kunde wird zum Anlegen oder Bearbeiten angezeigt
 function kundeDarstellen(tx, results){
-    alert("kundeDarstellen");
     $('#knr').val(results.rows[0].KNR);
     $('#nameunternehmen').val(results.rows[0].NAMEUNTERNEHMEN);
     $('#ansprechpartner').val(results.rows[0].ANSPRECHPARTNER);

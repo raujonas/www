@@ -22,7 +22,7 @@ function populateDB(tx) {
     //Tabelle für Kunden erstellen
     tx.executeSql('DROP TABLE IF EXISTS KUNDEN');
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
-    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Test AG", "Herr Test", 456, "Test Strasse", 789, "Test Stadt", "Test Land", "Test Notiz")');
+    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
     tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT)');
