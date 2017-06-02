@@ -1,7 +1,7 @@
 document.addEventListener("deviceready", startApp, false);
 
 function startApp(){
-    // An dieser Stelle die Buttons mit Listener einfügen:
+// An dieser Stelle die Buttons mit Listener einfügen:
     alert('startApp');
     getAlleKunden();
     $('#kanlegen').on('click',addKunde);
@@ -9,12 +9,10 @@ function startApp(){
     $(document).on('click', '#kundenuebersicht a', function(){
         zeigeKundeAn(this);
     });
-    alert("fertig");
 }
 
+// Neuen Kunden anlegen - Werte werden ausgelesen und an die Datenbank übergeben
 function addKunde(){
-    alert('addKunde() aufgerufen');
-    
     var knr = $('#knr').val();
     var nameunternehmen = $('#nameunternehmen').val();
     var ansprechpartner = $('#ansprechpartner').val();
@@ -25,20 +23,17 @@ function addKunde(){
     var land = $('#land').val();
     var text = $('#infos').val();
     
-    alert(knr + ' ' + nameunternehmen + ' ' +  ansprechpartner + ' ' +  telefonnummer + ' ' +  strasse + ' ' +  plz + ' ' +  stadt + ' ' +  land + ' ' +  text);
-    
     if (knr.length == 0) {
 		alert('Bitte KNR angeben! (PRIMARY KEY)');
 		return;
 	}
     
-    kzuruecksetzen();
-        
 //    addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, //text);
-    
+    kzuruecksetzen();
     history.back();
 }
 
+// Das Formular für einen neuen Kunden wird zurückgesetzt
 function kzuruecksetzen(){
     $('#knr').val('');
     $('#nameunternehmen').val('');
@@ -51,6 +46,7 @@ function kzuruecksetzen(){
     $('#infos').val('');
 }
 
+// Ein Kunde wird zum Anlegen oder Bearbeiten angezeigt
 function kundeDarstellen(tx, results){
     alert("kundeDarstellen");
     $('#knr').val(results.rows[0].KNR);
@@ -64,6 +60,7 @@ function kundeDarstellen(tx, results){
     $('#infos').val(results.rows[0].INFOS);
 }
 
+// Die Kunden werden in das ListView zur Kundenübersicht eingefügt
 function kundenInListView(tx, results){
     var len = results.rows.length;
     if (len > 0){
@@ -82,18 +79,4 @@ function zeigeKundeAn(kundeElement){
     console.log($(kundeElement).attr('data-knr'),"KNR");
     var knr = $(kundeElement).attr('data-knr');
     getKunde(knr);
-}
-
-function fuegeKundenInListViewEin(){
-    getAlleKundenDB(function(tx, results){
-        var len = results.rows.length;
-        alert('fuegeKundenInListViewEin aufgerufen');
-        if (len > 0){
-            for (var i=0; i<len; i++){
-                $('#kundenuebersicht').append('<li>TEST</li>');
-            }
-        } else {
-            
-        }
-    });
 }

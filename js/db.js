@@ -56,7 +56,6 @@ function getKunde(knr){
     db.transaction(function(tx){
         tx.executeSql("SELECT * FROM Kunden WHERE KNR=" + knr, [], kundeDarstellen, errorCB);
     });
-    alert("getKunde erfolgreich");
 }
 
 //------------------- Belege (Bilder) hinzufügen und auslesen-------------------
