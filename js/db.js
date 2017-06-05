@@ -23,6 +23,7 @@ function populateDB(tx) {
     tx.executeSql('DROP TABLE IF EXISTS KUNDEN');
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
     tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
+    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (456, "Beste Firma2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
     tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT)');
@@ -38,14 +39,17 @@ function successCB() {
 
 //------------------- Kunden verwalten -----------------------------------------
 //Kunde hinzufügen
-/*function addKunde(knr, tx){
-    tx.executeSql("INSERT INTO Kunden (knr) VALUES (?)", [knr], successCB, errorCB);
-}*/
+function addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
+    db.transaction(function(tx){
+        tx.executeSql("INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (?,?,?,?,?,?,?,?,?)", [knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text], successCB, errorCB);
+    });
+    alert('addKundeDB');
+}
 
 //Alle Kunden bekommen
 function getAlleKunden(){
     db.transaction(function(tx){
-        tx.executeSql("SELECT * FROM Kunden", [], kundenInListView, errorCB);
+        tx.executeSql("SELECT * FROM Kunden ORDER BY  nameunternehmen ASC", [], kundenInListView, errorCB);
     })
 }
 
@@ -71,7 +75,7 @@ function getBelege(){
       successCB);
 }         
 
-
+// @Dominik: Könnte man das auch in die scripts.js verschieben?
 function ergebnis(tx, results){
   $("#BilderListe").empty();
   var len = results.rows.length;  

@@ -2,7 +2,6 @@ document.addEventListener("deviceready", startApp, false);
 
 function startApp(){
 // An dieser Stelle die Buttons mit Listener einfügen:
-    alert('startApp');
     getAlleKunden();
     $('#kanlegen').on('click',addKunde);
     $(document).on('click', '#kabbrechen', kzuruecksetzen);
@@ -11,7 +10,7 @@ function startApp(){
     });
 }
 
-// Neuen Kunden anlegen - Werte werden ausgelesen und an die Datenbank übergeben
+// Neuen Kunden anlegen - Werte werden ausgelesen und an die Datenbankfunktion übergeben
 function addKunde(){
     var knr = $('#knr').val();
     var nameunternehmen = $('#nameunternehmen').val();
@@ -24,11 +23,12 @@ function addKunde(){
     var text = $('#infos').val();
     
     if (knr.length == 0) {
-		alert('Bitte KNR angeben! (PRIMARY KEY)');
+		alert('Bitte Kundennummer angeben');
 		return;
 	}
-    
-//    addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, //text);
+        
+    addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
+    getAlleKunden();
     kzuruecksetzen();
     history.back();
 }
@@ -62,20 +62,19 @@ function kundeDarstellen(tx, results){
 // Die Kunden werden in das ListView zur Kundenübersicht eingefügt
 function kundenInListView(tx, results){
     var len = results.rows.length;
+    $('#kundenuebersicht').empty();
     if (len > 0){
         for (var i=0; i<len; i++){
             var knr = results.rows[i].KNR;
             $('#kundenuebersicht').append('<li><a href="#kundeanlegen" data-knr="' + knr + '" data-transition="slide">' + results.rows[i].NAMEUNTERNEHMEN + '</a></li>');
-            $('#kundenuebersicht').listview('refresh');
         }
+    $('#kundenuebersicht').listview('refresh');
     } else {
         alert("Tabelle ist leer");
     }
 }
 
 function zeigeKundeAn(kundeElement){
-    console.log(kundeElement,"kundeElement");
-    console.log($(kundeElement).attr('data-knr'),"KNR");
     var knr = $(kundeElement).attr('data-knr');
     getKunde(knr);
 }
