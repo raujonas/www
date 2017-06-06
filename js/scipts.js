@@ -8,6 +8,9 @@ function startApp(){
     $(document).on('click', '#kundenuebersicht a', function(){
         zeigeKundeAn(this);
     });
+    $(document).on('swipeleft', '#kundenuebersicht a', function(){
+        loescheKunde(this);
+    })
 }
 
 // Neuen Kunden anlegen - Werte werden ausgelesen und an die Datenbankfunktion übergeben
@@ -77,4 +80,11 @@ function kundenInListView(tx, results){
 function zeigeKundeAn(kundeElement){
     var knr = $(kundeElement).attr('data-knr');
     getKunde(knr);
+}
+
+function loescheKunde(kundeElement){
+    var knr = $(kundeElement).attr('data-knr');
+    if (confirm('Soll der Eintrag wirklich gelöscht werden?')){
+        deleteKunde(knr);
+    }
 }

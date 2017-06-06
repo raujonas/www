@@ -41,9 +41,8 @@ function successCB() {
 //Kunde hinzufügen
 function addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
     db.transaction(function(tx){
-        tx.executeSql("INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (?,?,?,?,?,?,?,?,?)", [knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text], successCB, errorCB);
+        tx.executeSql("INSERT OR REPLACE INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (?,?,?,?,?,?,?,?,?)", [knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text], successCB, errorCB);
     });
-    alert('addKundeDB');
 }
 
 //Alle Kunden bekommen
@@ -58,6 +57,14 @@ function getKunde(knr){
     db.transaction(function(tx){
         tx.executeSql("SELECT * FROM Kunden WHERE KNR=" + knr, [], kundeDarstellen, errorCB);
     });
+}
+
+//Einen bestimmten Kunden löschen
+function deleteKunde(knr){
+    db.transaction(function(tx){
+        tx.executeSql("DELETE FROM Kunden WHERE KNR=" + knr, [], successCB, errorCB);
+    });
+    getAlleKunden();
 }
 
 //------------------- Belege (Bilder) hinzufügen und auslesen-------------------
