@@ -9,7 +9,7 @@
         <script src="cordova.js"></script>      <!-- Für Kamera notwendig -->
         <script src="js/camera.js"></script>    <!-- Funktionen für die Kamera -->
         <script src="js/db.js"></script>        <!-- Funktionen für Datenbank -->
-        <script src="js/scipts.js"></script>    <!-- Funktionen für Buttons -->
+        <script src="js/sciptsKunden.js"></script>    <!-- Funktionen für Buttons -->
     </head>
     <body>
 <!---Homescreen----------------------------------------------------------------------------->
@@ -102,15 +102,25 @@
             <div data-role="header">
                 <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
                 <h1>Tankbelege verwalten</h1>
+                <a href="#tankbelegehinzufuegen" data-icon="edit" data-iconpos="notext" data-transition="slide"></a>
             </div>
             <div role="main" class="ui-content">
-              <ul data-role="listview" data-inset="true" id="BilderListe">
-                <!--<li><img src="" id="image" style="display: none; width: 100%;" /></li>       -->
-              </ul>
+              
+            </div>
+        </div>   
+<!---Tankbelege hinzufügen------------------------------------------------------------------->
+        <div data-role="page" data-theme="b" id="tankbelegehinzufuegen">
+            <div data-role="header">
+              <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+              <h1>Tankbeleg hinzufügen</h1>
+              <a data-icon="check" data-iconpos="notext" data-transition="slide" id="banlegen"></a>
+            </div>
+            <div role="main" class="ui-content">
+              <img src="" id="image" style="display: none; width: 100%;" />
               <a href="#" data-role="button" data-icon="camera" onclick="aufnehmen();">Bild hinzufügen</a>
               <a href="#" data-role="button" data-icon="ergebnis" onclick="getBelege();">ergebnisse</a>
             </div>
-        </div>   
+        </div>  
 <!---Statistik------------------------------------------------------------------------------>
         <div data-role="page" data-theme="b" id="statistik">
             <div data-role="header">
