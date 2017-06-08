@@ -9,8 +9,8 @@
         <script src="cordova.js"></script>      <!-- Für Kamera notwendig -->
         <script src="js/camera.js"></script>    <!-- Funktionen für die Kamera -->
         <script src="js/db.js"></script>        <!-- Funktionen für Datenbank -->
-        <script src="js/sciptsKunden.js"></script>    <!-- Funktionen für Kunden -->
-        <script src="js/sciptsBelege.js"></script>    <!-- Funktionen für Belege -->
+        <script src="js/scriptsKunden.js"></script>    <!-- Funktionen für Kunden -->
+        <script src="js/scriptsBelege.js"></script>    <!-- Funktionen für Belege -->
     </head>
     <body>
 <!---Homescreen----------------------------------------------------------------------------->
@@ -106,20 +106,27 @@
                 <a href="#tankbelegehinzufuegen" data-icon="edit" data-iconpos="notext" data-transition="slide"></a>
             </div>
             <div role="main" class="ui-content">
-              
+              <ul data-role="listview" data-inset="true" data-filter="true" id="belegeuebersicht">
+                    <!--Inhalt wird dynamisch befüllt-->
+              </ul>  
             </div>
         </div>   
 <!---Tankbelege hinzufügen------------------------------------------------------------------->
         <div data-role="page" data-theme="b" id="tankbelegehinzufuegen">
             <div data-role="header">
-              <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
+              <a data-icon="carat-l" data-iconpos="notext" data-rel="back" id="babbrechen"></a>
               <h1>Tankbeleg hinzufügen</h1>
               <a data-icon="check" data-iconpos="notext" data-transition="slide" id="banlegen"></a>
             </div>
             <div role="main" class="ui-content">
+              <h4>Beleg</h4>
+                <input type="text" id="Datum" placeholder="Datum"/>
+                <input type="text" id="bnr" placeholder="bnr"/>
+                <input type="text" id="Ort" placeholder="Ort"/>
+                <input type="text" id="Tankstelle" placeholder="Tankstelle"/>
+                <input type="text" id="Betrag" placeholder="Betrag"/>
+              <a href="#" data-role="button" id="camera" data-icon="camera" onclick="aufnehmen();">Bild hinzufügen</a>
               <img src="" id="image" style="display: none; width: 100%;" />
-              <a href="#" data-role="button" data-icon="camera" onclick="aufnehmen();">Bild hinzufügen</a>
-              <a href="#" data-role="button" data-icon="ergebnis" onclick="getBelege();">ergebnisse</a>
             </div>
         </div>  
 <!---Statistik------------------------------------------------------------------------------>

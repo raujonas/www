@@ -20,13 +20,14 @@ function populateDB(tx) {
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
     //Tabelle für Kunden erstellen
-    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');
+    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');                         //@Jonas keine Datentypen?
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
     tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
     tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (456, "Beste Firma2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (bnr INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT, Ort TEXT, Tankstelle TEXT, Datum TEXT, Betrag REAL)');
+    tx.executeSql('INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag) VALUES ("Karlsruhe", "Aral", "01-02-17", 50)'); 
 }
 //Wenn was schief geht
 function errorCB(err) {
@@ -69,32 +70,27 @@ function deleteKunde(knr){
 
 //------------------- Belege (Bilder) hinzufügen und auslesen-------------------
 //Hinzufügen
-function addBelege(Pfad){
+function addBelegDB(datum, ort, tankstelle, betrag, bild){
     db.transaction(function(tx){
-      tx.executeSql("INSERT INTO BELEGE (Bild) VALUES (?)", [Pfad]);
-    }, errorCB, successCB);
+      tx.executeSql("INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag, Bild) VALUES (?,?,?,?,?)", [datum, ort, tankstelle, betrag, bild], successCB, errorCB);
+    }, 
+    errorCB,
+    successCB);
 }
-//Auslesen   //TO do
-function getBelege(){
-    db.transaction(
-      function(tx){tx.executeSql("SELECT Bild FROM BELEGE", [],ergebnis, errorCB);}, 
-      errorCB, 
-      successCB);
-}         
 
-// @Dominik: Könnte man das auch in die scripts.js verschieben?
-function ergebnis(tx, results){
-  $("#BilderListe").empty();
-  var len = results.rows.length;  
-  alert("Anzahl der Bilder" + len)
-  if ( len > 0) {                           
-    for(var i=0; i < len; i++){
-      $("#BilderListe").append('<li><img src="'+ results.rows[i].Bild +'" id="'+ results.rows[i].ID +'"/></li>');
-      //$("#BilderListe").append('<li><img src="'+ results.rows[i].Bild +'" id="'+ results.rows[i].ID +'" style="display: none; width: 100%;"/></li>');
-      alert('<li><img src="'+ results.rows[i].Bild +'" id="'+ i +'" style="display: none; width: 100%;"/></li>');
-      //var bild = results.rows[i].Bild;
-      //alert(bild);
-    }
-  }
-  $("#BilderListe").listview('refresh'); 
-}       
+//Alle Belege Auslesen
+function getAlleBelege(){
+    db.transaction(
+      function(tx){tx.executeSql("SELECT * FROM BELEGE", [], alleBelegeAnzeigen, errorCB);}, 
+      errorCB);
+}
+
+//Spezifische Belege auslesen
+function getBeleg(belegElement){
+    var bnr = $(belegElement).attr('data-bnr');
+    db.transaction(
+      function(tx){tx.executeSql("SELECT * FROM BELEGE WHERE bnr=" + bnr, [], belegDarstellen, errorCB);}, 
+      errorCB);
+}      
+
+      

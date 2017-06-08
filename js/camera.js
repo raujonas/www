@@ -11,9 +11,8 @@ function aufnehmen() {                //Kamera starten
    });
 
    function onSuccess(imageData) {     // Wenn ein Bild erfolgreich aufgenommen wurde
-      //$('#image').show();
-      //$('#image').attr('src', imageData);
-      addBelege(imageData);           //Bild zur Datenbank hinzufügen
+      $('#image').show();
+      $('#image').attr('src', imageData);
       //$('#camera').hide();
    }
 

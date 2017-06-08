@@ -25,10 +25,10 @@ function addKunde(){
     var land = $('#land').val();
     var text = $('#infos').val();
     
-    if (knr.length == 0) {
+    if (knr.length == 0) {             //@ Jonas lass doch mit autoincrement die nummer anlegen
 		alert('Bitte Kundennummer angeben');
 		return;
-	}
+    }
         
     addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
     getAlleKunden();
@@ -77,6 +77,7 @@ function kundenInListView(tx, results){
     }
 }
 
+// @ Jonas, die 2 Zeilen kannst du auch in getKunde machen und das kundeElement direkt übergeben
 function zeigeKundeAn(kundeElement){
     var knr = $(kundeElement).attr('data-knr');
     getKunde(knr);
