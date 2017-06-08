@@ -10,7 +10,7 @@ function onDeviceReady() {
     
 }
 
-//Belege Kurzübersicht
+//Belege KurzÃ¼bersicht
 function alleBelegeAnzeigen(tx, results){
     var len = results.rows.length;  
     $('#belegeuebersicht').empty();
