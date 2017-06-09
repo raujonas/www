@@ -74,8 +74,7 @@ function addBelegDB(datum, ort, tankstelle, betrag, bild){
     db.transaction(function(tx){
       tx.executeSql("INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag, Bild) VALUES (?,?,?,?,?)", [datum, ort, tankstelle, betrag, bild], successCB, errorCB);
     }, 
-    errorCB,
-    successCB);
+    errorCB);
 }
 
 //Alle Belege Auslesen

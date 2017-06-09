@@ -35,12 +35,10 @@ function addBeleg(){
     var ort = $('#Ort').val();
     var tankstelle = $('#Tankstelle').val();
     var betrag = $('#Betrag').val();
-    //var bild = $('#image').val();
-    //alert("bild: "+bild);
-    
-    //addBelegDB(datum, ort, tankstelle, betrag, bild);
+    var bild = $('#image').attr('src');
+    addBelegDB(datum, ort, tankstelle, betrag, bild);
     $('#image').hide();
-    bzuruecksetzen(); 
+    bzuruecksetzen();
     getAlleBelege();   
 }
 
@@ -53,7 +51,6 @@ function belegDarstellen(tx, results){
 
     //Bild anzeigen wenn vorhanden
     if (results.rows[0].Bild != null){
-      alert("Bild"+results.rows[0].Bild);
       $('#image').show();
       $('#image').attr('src', results.rows[0].Bild);
     }
