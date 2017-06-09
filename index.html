@@ -4,6 +4,9 @@
         <title>Fahrtenbuch</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <style>
+            div.ui-slider-switch {width: 100%;}
+        </style>
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.mobile-1.4.5.min.js"></script>
         <script src="cordova.js"></script>      <!-- Für Kamera notwendig -->
@@ -206,6 +209,11 @@
                 <h1>Privat oder Geschäftlich</h1>
             </div>
             <div role="main" class="ui-content">
+                <label for="flip-min">Flip switch:</label>
+	<select name="flip-min" id="flip-min" data-role="slider">
+		<option value="off">Switch Off</option>
+		<option value="on">Switch On</option>
+	</select>
             </div>
         </div>  
 <!---Einstellungen - Design ändern---------------------------------------------------------->
