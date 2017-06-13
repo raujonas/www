@@ -19,11 +19,17 @@ function populateDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+    
     //Tabelle für Kunden erstellen
-    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');                         //@Jonas keine Datentypen?
+    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');                         //@Jonas keine Datentypen? @Dominik: Das braucht man nicht unbedingt hab ich irgendwo gelesen :D KP
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
     tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
-    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (456, "Beste Firma2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
+    
+    //Tabelle für Fahrten
+    tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY NOT NULL, KNR, START, ENDE, KM, DAUER)');
+    tx.executeSql('INSERT INTO KUNDEN (fnr, knr, start, ende, km, dauer) VALUES (001, 123, asdf, jklö, 100, 5)');
+    
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
     tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (bnr INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT, Ort TEXT, Tankstelle TEXT, Datum TEXT, Betrag REAL)');

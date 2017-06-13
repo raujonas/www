@@ -97,10 +97,29 @@
             <div data-role="header">
                 <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
                 <h1>Fahrten verwalten</h1>
+                <a href="#fahrtanlegen" data-icon="edit" data-iconpos="notext" data-transition="slide"></a>
             </div>
             <div role="main" class="ui-content">
+                <ul data-role="listview" data-inset="true" data-filter="true" id="fahrtenuebersicht">
+                    <!--Inhalt wird dynamisch befüllt-->
+                </ul>
             </div>
         </div>   
+<!--- Fahrt anlegen------------------------------------------------------------------------->
+        <div data-role="page" data-theme="b" id="fahrtanlegen">
+            <div data-role="header">
+                <a data-icon="carat-l" data-iconpos="notext" data-rel="back" id="kabbrechen"></a>
+                <h1>Fahrt bearbeiten</h1>
+                <a data-icon="check" data-iconpos="notext" data-transition="slide" id="kanlegen"></a>
+            </div>
+            <div role="main" class="ui-content">
+                <label for="select-choice-0" class="select">Kunde auswählen:</label>
+                <select name="select-choice-0" id="kundewaehlen">
+                    <option value="standard">Standard: 7 day</option>
+                    <!--Inhalt wird dynamisch befüllt-->
+                </select>
+            </div>
+        </div>
 <!---Tankbelege verwalten------------------------------------------------------------------->
         <div data-role="page" data-theme="b" id="tankbelege">
             <div data-role="header">
