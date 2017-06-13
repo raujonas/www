@@ -28,6 +28,7 @@ function bzuruecksetzen(){
     $('#Ort').val('');
     $('#Tankstelle').val('');
     $('#Betrag').val('');
+    $('#image').hide();
 }
 
 function addBeleg(){
@@ -37,14 +38,13 @@ function addBeleg(){
     var betrag = $('#Betrag').val();
     var bild = $('#image').attr('src');
     addBelegDB(datum, ort, tankstelle, betrag, bild);
-    $('#image').hide();
     bzuruecksetzen();
     getAlleBelege();   
 }
 
 function belegDarstellen(tx, results){ 
-    $('#Datum').val(results.rows[0].Datum);
     $('#bnr').val(results.rows[0].bnr);
+    $('#Datum').val(results.rows[0].Datum);
     $('#Ort').val(results.rows[0].Ort);
     $('#Tankstelle').val(results.rows[0].Tankstelle);
     $('#Betrag').val(results.rows[0].Betrag);
