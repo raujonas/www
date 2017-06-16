@@ -3,6 +3,7 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
+}
     // onSuccess Callback
     // This method accepts a Position object, which contains the
     // current GPS coordinates
@@ -26,4 +27,3 @@ function onDeviceReady() {
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}
