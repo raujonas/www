@@ -12,7 +12,7 @@ function alleFahrtenAnzeigen(tx, results){
       for(var i=0; i < len; i++){
         $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-FNR="' + results.rows[i].FNR + '" data-transition="slide">' + results.rows[i].START +' '+ results.rows[i].DATUM +'</a></li>');
       } 
-      $('#belegeuebersicht').listview('refresh');             //FEHLER???????????
+      $('#belegeuebersicht').listview().listview('refresh');             //FEHLER???????????
     }          
 } 
 //-> Distance Matrix API
@@ -25,19 +25,19 @@ function alleFahrtenAnzeigen(tx, results){
 //Beispiel JSON Ergebnis: 
 /*
 {
-   "destination_addresses" : [ "New York City, New York, USA" ],
-   "origin_addresses" : [ "Washington, D.C., District of Columbia, USA" ],
+   "destination_addresses" : [ "Frankfurt am Main, Deutschland" ],
+   "origin_addresses" : [ "Kanalweg 101, 76149 Karlsruhe, Deutschland" ],
    "rows" : [
       {
          "elements" : [
             {
                "distance" : {
-                  "text" : "362 km",
-                  "value" : 361721
+                  "text" : "134 km",
+                  "value" : 133697
                },
                "duration" : {
-                  "text" : "3 Stunden, 48 Minuten",
-                  "value" : 13656
+                  "text" : "1 Stunde, 36 Minuten",
+                  "value" : 5736
                },
                "status" : "OK"
             }

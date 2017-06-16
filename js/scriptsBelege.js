@@ -10,18 +10,17 @@ function onDeviceReady() {
     $(document).on('swipeleft', '#belegeuebersicht a', function(){
         loescheBeleg(this);
     })
-    
 }
 
 //Belege Kurzübersicht
 function alleBelegeAnzeigen(tx, results){
-    var len = results.rows.length;  
+    var len = results.rows.length;   
     $('#belegeuebersicht').empty();
     if ( len > 0) {                           
       for(var i=0; i < len; i++){
         $('#belegeuebersicht').append('<li><a href="#tankbelegehinzufuegen" data-bnr="' + results.rows[i].bnr + '" data-transition="slide">' + results.rows[i].Ort + '</a></li>');
-      } 
-      $('#belegeuebersicht').listview('refresh');             //FEHLER???????????
+      }
+      $('#belegeuebersicht').listview().listview('refresh');  
     }          
 } 
 
