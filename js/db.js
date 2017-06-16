@@ -25,10 +25,13 @@ function populateDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
     tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
     
+    /*  @Jonas: Probleme beim starten der APP
     //Tabelle für Fahrten
     tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
     tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY NOT NULL, KNR, START, ENDE, KM, DAUER)');
     tx.executeSql('INSERT INTO KUNDEN (fnr, knr, start, ende, km, dauer) VALUES (001, 123, asdf, jklö, 100, 5)');
+    */
+    
     
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
@@ -78,9 +81,25 @@ function deleteKunde(knr){
 //Hinzufügen
 function addBelegDB(datum, ort, tankstelle, betrag, bild){
     db.transaction(function(tx){
-      tx.executeSql("INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag, Bild) VALUES (?,?,?,?,?)", [datum, ort, tankstelle, betrag, bild], successCB, errorCB);
+      tx.executeSql("INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag, Bild) VALUES (?,?,?,?,?)", [ort, tankstelle, datum, betrag, bild], successCB, errorCB);
     }, 
     errorCB);
+}
+
+//Beleg ändern
+function changeBelegDB(bnr, datum, ort, tankstelle, betrag, bild){
+    db.transaction(function(tx){
+      tx.executeSql("UPDATE BELEGE SET Ort='"+ort+"', Tankstelle='"+tankstelle+"', Datum='"+datum+"', Betrag='"+betrag+"', Bild='"+bild+"' WHERE bnr = "+bnr+";", [], successCB, errorCB);
+    }, 
+    errorCB);
+}       
+
+//Beleg löschen
+function deleteBelegDB(bnr){
+    db.transaction(function(tx){
+        tx.executeSql("DELETE FROM BELEGE WHERE bnr=" + bnr, [], successCB, errorCB);
+    });
+    getAlleBelege();
 }
 
 //Alle Belege Auslesen

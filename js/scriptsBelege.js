@@ -7,6 +7,9 @@ function onDeviceReady() {
     $(document).on('click', '#belegeuebersicht a', function(){
         getBeleg(this);
     });
+    $(document).on('swipeleft', '#belegeuebersicht a', function(){
+        loescheBeleg(this);
+    })
     
 }
 
@@ -32,12 +35,18 @@ function bzuruecksetzen(){
 }
 
 function addBeleg(){
+    var bnr = $('#bnr').val();    
     var datum = $('#Datum').val();
     var ort = $('#Ort').val();
     var tankstelle = $('#Tankstelle').val();
     var betrag = $('#Betrag').val();
     var bild = $('#image').attr('src');
-    addBelegDB(datum, ort, tankstelle, betrag, bild);
+    if(bnr == ""){   
+      addBelegDB(datum, ort, tankstelle, betrag, bild);
+    }else{
+      //Falls Beleg bereits vorhanden -> ändern
+      changeBelegDB(bnr, datum, ort, tankstelle, betrag, bild);
+    }
     bzuruecksetzen();
     getAlleBelege();   
 }
@@ -53,5 +62,12 @@ function belegDarstellen(tx, results){
     if (results.rows[0].Bild != null){
       $('#image').show();
       $('#image').attr('src', results.rows[0].Bild);
+    }
+}
+
+function loescheBeleg(belegElement){
+    var bnr = $(belegElement).attr('data-bnr');
+    if (confirm('Soll der Eintrag wirklich gelöscht werden?')){
+        deleteBelegDB(bnr);
     }
 }

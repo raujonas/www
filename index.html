@@ -14,6 +14,7 @@
         <script src="js/db.js"></script>        <!-- Funktionen für Datenbank -->
         <script src="js/scriptsKunden.js"></script>    <!-- Funktionen für Kunden -->
         <script src="js/scriptsBelege.js"></script>    <!-- Funktionen für Belege -->
+        <script src="js/scriptsFahrten.js"></script>    <!-- Funktionen für Fahrten -->             
     </head>
     <body>
 <!---Homescreen----------------------------------------------------------------------------->
@@ -146,7 +147,7 @@
             </div>
             <div role="main" class="ui-content">
               <h4>Beleg</h4>        
-                <input type="text" id="bnr" readonly/>
+                <input type="hidden" id="bnr"/>
                 <input type="text" id="Datum" placeholder="Datum"/>
                 <input type="text" id="Ort" placeholder="Ort"/>
                 <input type="text" id="Tankstelle" placeholder="Tankstelle"/>
