@@ -49,8 +49,9 @@ function alleFahrtenAnzeigen(tx, results){
 */
 
 function abfrageDistanceAPI(){
-    var Start = "Deutschland+Karlsruhe+Kanalweg+101"
-    var Ziel = "Frankfurt"
+    standortGPS();
+    var Start = "Deutschland+Karlsruhe+Kanalweg+101";
+    var Ziel = "Frankfurt";
     
     var request = new XMLHttpRequest();
     //Anfrage URL
