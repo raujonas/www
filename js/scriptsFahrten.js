@@ -2,7 +2,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     getAlleFahrtenDB();
-    
+   
 }
       
 function alleFahrtenAnzeigen(tx, results){
@@ -19,14 +19,47 @@ function alleFahrtenAnzeigen(tx, results){
 //Entfernung und Dauer Beispiel von Google (https://developers.google.com/maps/documentation/distance-matrix/start?hl=de) 
 //https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=YOUR_API_KEY
 
+//Beispiel Ergebnis: 
+/*
+{
+   "destination_addresses" : [ "New York City, New York, USA" ],
+   "origin_addresses" : [ "Washington, D.C., District of Columbia, USA" ],
+   "rows" : [
+      {
+         "elements" : [
+            {
+               "distance" : {
+                  "text" : "362 km",
+                  "value" : 361721
+               },
+               "duration" : {
+                  "text" : "3 Stunden, 48 Minuten",
+                  "value" : 13656
+               },
+               "status" : "OK"
+            }
+         ]
+      }
+   ],
+   "status" : "OK"
+}
+*/
+
 function abfrageDistanceAPI(){
-alert("kilometer");
-var request = new XMLHttpRequest();
+    var request = new XMLHttpRequest();
+    //Anfrage URL
     request.open("GET","https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA");
     request.addEventListener('load', function(event) {
+       //Bei Erfolg
        if (request.status >= 200 && request.status < 300) {
           console.log(request.responseText);
-       } else {
+          //JSON parsen
+          var ergebnis = JSON.parse(request.responseText);
+          console.log("Kilometer :"+ergebnis.rows[0].elements[0].distance.text);
+          
+       } 
+       //Bei einem Fehler
+       else {
           console.warn(request.statusText, request.responseText);
        }
     });
