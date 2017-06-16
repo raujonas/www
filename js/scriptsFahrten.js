@@ -12,7 +12,7 @@ function alleFahrtenAnzeigen(tx, results){
       for(var i=0; i < len; i++){
         $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-FNR="' + results.rows[i].FNR + '" data-transition="slide">' + results.rows[i].START +' '+ results.rows[i].DATUM +'</a></li>');
       } 
-      $('#belegeuebersicht').listview().listview('refresh');             //FEHLER???????????
+      $('#belegeuebersicht').listview().listview('refresh');         
     }          
 } 
 //-> Distance Matrix API
@@ -49,8 +49,8 @@ function alleFahrtenAnzeigen(tx, results){
 */
 
 function abfrageDistanceAPI(){
-    standortGPS();
-    var Start = "Deutschland+Karlsruhe+Kanalweg+101";
+    standortGPS();    //extra Button
+    var Start = "Deutschland+Karlsruhe+Kanalweg+101";  //Oder GPS: "49.0297141,8.3895348" geht auch
     var Ziel = "Frankfurt";
     
     var request = new XMLHttpRequest();

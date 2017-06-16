@@ -25,6 +25,7 @@ function standortGPS(){
                    'Heading: '           + position.coords.heading           + '\n' +
                    'Speed: '             + position.coords.speed             + '\n' +
                    'Timestamp: '         + position.timestamp                + '\n');
+                   //8.3895348,49.0297141
    };
 
     // onError Callback receives a PositionError object
