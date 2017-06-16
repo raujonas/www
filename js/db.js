@@ -21,17 +21,14 @@ function populateDB(tx) {
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
     
     //Tabelle für Kunden erstellen
-    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');                         //@Jonas keine Datentypen? @Dominik: Das braucht man nicht unbedingt hab ich irgendwo gelesen :D KP
+    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');        //@Jonny, kein Autoincrement für die ID?
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
     tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
     
-    /*  @Jonas: Probleme beim starten der APP
     //Tabelle für Fahrten
     tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY NOT NULL, KNR, START, ENDE, KM, DAUER)');
-    tx.executeSql('INSERT INTO KUNDEN (fnr, knr, start, ende, km, dauer) VALUES (001, 123, asdf, jklö, 100, 5)');
-    */
-    
+    tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, KNR, START, ENDE, KM, DAUER)');
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER) VALUES (123, "Karlsruhe", "Mannheim", 100, 60)'); 
     
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
@@ -77,7 +74,7 @@ function deleteKunde(knr){
     getAlleKunden();
 }
 
-//------------------- Belege (Bilder) hinzufügen und auslesen-------------------
+//------------------- Belege hinzufügen und auslesen-------------------
 //Hinzufügen
 function addBelegDB(datum, ort, tankstelle, betrag, bild){
     db.transaction(function(tx){
@@ -116,5 +113,15 @@ function getBeleg(belegElement){
       function(tx){tx.executeSql("SELECT * FROM BELEGE WHERE bnr=" + bnr, [], belegDarstellen, errorCB);}, 
       errorCB);
 }      
+
+//-------------------------------------Fahrten----------------------------------------------------------------
+
+//Alle Fahrten auslesen
+function getAlleFahrtenDB(){
+    db.transaction(
+      function(tx){
+      tx.executeSql("SELECT * FROM FAHRTEN", [], alleFahrtenAnzeigen, errorCB);}, 
+      errorCB);
+}
 
       
