@@ -27,8 +27,8 @@ function populateDB(tx) {
     
     //Tabelle für Fahrten
     tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, KNR, START, ENDE, KM, DAUER)');
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER) VALUES (123, "Karlsruhe", "Mannheim", 100, 60)'); 
+    tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, KNR, START, ENDE, KM, DAUER, DATUM)');
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (123, "Karlsruhe", "Mannheim", 100, 60, "01.06.2017")'); 
     
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
@@ -118,9 +118,8 @@ function getBeleg(belegElement){
 
 //Alle Fahrten auslesen
 function getAlleFahrtenDB(){
-    db.transaction(
-      function(tx){
-      tx.executeSql("SELECT * FROM FAHRTEN", [], alleFahrtenAnzeigen, errorCB);}, 
+    db.transaction(                            
+      function(tx){tx.executeSql("SELECT * FROM FAHRTEN", [], alleFahrtenAnzeigen, errorCB);}, 
       errorCB);
 }
 
