@@ -15,11 +15,14 @@ function alleFahrtenAnzeigen(tx, results){
       $('#belegeuebersicht').listview('refresh');             //FEHLER???????????
     }          
 } 
+//-> Distance Matrix API
+//Bei Google Maps Distance Matrix API handelt es sich um einen Dienst, der Reisezeiten und Entfernungen für eine Start- und Zielortmatrix bereitstellt.
+
 //API_KEY=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA
 //Entfernung und Dauer Beispiel von Google (https://developers.google.com/maps/documentation/distance-matrix/start?hl=de) 
 //https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=YOUR_API_KEY
 
-//Beispiel Ergebnis: 
+//Beispiel JSON Ergebnis: 
 /*
 {
    "destination_addresses" : [ "New York City, New York, USA" ],
@@ -46,17 +49,22 @@ function alleFahrtenAnzeigen(tx, results){
 */
 
 function abfrageDistanceAPI(){
+    var Start = "Deutschland+Karlsruhe+Kanalweg+101"
+    var Ziel = "Frankfurt"
+    
     var request = new XMLHttpRequest();
     //Anfrage URL
-    request.open("GET","https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA");
+    request.open("GET","https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins="+Start+"&destinations="+Ziel+"&key=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA");
     request.addEventListener('load', function(event) {
        //Bei Erfolg
        if (request.status >= 200 && request.status < 300) {
           console.log(request.responseText);
           //JSON parsen
           var ergebnis = JSON.parse(request.responseText);
+          //Kilometer
           console.log("Kilometer :"+ergebnis.rows[0].elements[0].distance.text);
-          
+          //Dauer
+          console.log("Kilometer :"+ergebnis.rows[0].elements[0].duration.text);          
        } 
        //Bei einem Fehler
        else {
