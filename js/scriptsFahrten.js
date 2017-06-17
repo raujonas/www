@@ -16,7 +16,7 @@ function alleFahrtenAnzeigen(tx, results){
     }          
 } 
 //-> Distance Matrix API
-//Bei Google Maps Distance Matrix API handelt es sich um einen Dienst, der Reisezeiten und Entfernungen für eine Start- und Zielortmatrix bereitstellt.
+//Bei Google Maps Distance Matrix API handelt es sich um einen Dienst, der Reisezeiten und Entfernungen fÃ¼r eine Start- und Zielortmatrix bereitstellt.
 
 //API_KEY=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA
 //Entfernung und Dauer Beispiel von Google (https://developers.google.com/maps/documentation/distance-matrix/start?hl=de) 

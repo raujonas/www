@@ -6,7 +6,7 @@ function onDeviceReady() {
 }
 
 function standortGPS(){ 
-    //Zeitbeschr‰nkung der Standorterfassung 
+    //Zeitbeschr√§nkung der Standorterfassung 
     var options = {
       enableHighAccuracy: true,
       maximumAge: 3600000
