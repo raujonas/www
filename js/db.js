@@ -55,7 +55,7 @@ function addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strass
 //Alle Kunden bekommen
 function getAlleKunden(){
     db.transaction(function(tx){
-        tx.executeSql("SELECT * FROM Kunden ORDER BY  nameunternehmen ASC", [], kundenInListView, errorCB);
+        tx.executeSql("SELECT * FROM Kunden ORDER BY nameunternehmen ASC", [], kundenInListView, errorCB);
     })
 }
 
@@ -72,6 +72,31 @@ function deleteKunde(knr){
         tx.executeSql("DELETE FROM Kunden WHERE KNR=" + knr, [], successCB, errorCB);
     });
     getAlleKunden();
+}
+
+//-------------------------------------Fahrten----------------------------------------------------------------
+
+//Alle Fahrten auslesen
+function getAlleFahrtenDB(){
+    db.transaction(                            
+      function(tx){tx.executeSql("SELECT * FROM FAHRTEN", [], alleFahrtenAnzeigen, errorCB);}, 
+      errorCB);
+}
+
+//Alle Kunden bekommen für Fahrten (anderes Callback)
+function getAlleKundenfuerFahrt(){
+    console.log("KundefürFahrt");
+    db.transaction(function(tx){
+        tx.executeSql("SELECT * FROM Kunden ORDER BY nameunternehmen ASC", [], kundenInSelectMenu, errorCB);
+    })
+}
+
+//Eine bestimmte Fahrt bekommen
+function getFahrt(fahrtElement){
+    var fnr = $(fahrtElement).attr('data-fnr');
+    db.transaction(function(tx){
+        tx.executeSql("SELECT * FROM Fahrten, Kunden WHERE Fahrten.KNR = Kunden.KNR AND fnr=" + fnr, [], fahrtDarstellen, errorCB);
+    });
 }
 
 //------------------- Belege hinzufügen und auslesen-------------------
@@ -114,13 +139,6 @@ function getBeleg(belegElement){
       errorCB);
 }      
 
-//-------------------------------------Fahrten----------------------------------------------------------------
 
-//Alle Fahrten auslesen
-function getAlleFahrtenDB(){
-    db.transaction(                            
-      function(tx){tx.executeSql("SELECT * FROM FAHRTEN", [], alleFahrtenAnzeigen, errorCB);}, 
-      errorCB);
-}
 
       

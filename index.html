@@ -100,7 +100,7 @@
             <div data-role="header">
                 <a data-icon="carat-l" data-iconpos="notext" data-rel="back"></a>
                 <h1>Fahrten verwalten</h1>
-                <a href="#fahrtanlegen" data-icon="edit" data-iconpos="notext" data-transition="slide"></a>
+                <a href="#fahrtanlegen" data-icon="edit" data-iconpos="notext" data-transition="slide" id="neueFahrt"></a>
             </div>
             <div role="main" class="ui-content">
                 <ul data-role="listview" data-inset="true" data-filter="true" id="fahrtenuebersicht">
@@ -118,15 +118,19 @@
             <div role="main" class="ui-content">
                 <label for="selectkunde" class="select">Kunde auswählen:</label>
                 <select name="selectkunde" id="kundewaehlen">
-                    <option value="standard">Standard: 7 day</option>
                     <!--Inhalt wird dynamisch befüllt-->
                 </select>
                 <br>
                 <input type="hidden" id="fnr"/>
+                <label for="start" >Startposition:</label>
                 <input type="text" id="start" placeholder="Start"/>
                 <a href="#" data-role="button" id="startgps" onclick="abfrageDistanceAPI();">Startpunkt per GPS erfassen</a>
+                <br>
+                <label for="ende" >Endposition:</label>
                 <input type="text" id="ende" placeholder="Ende"/>
                 <a href="#" data-role="button" id="endegps" onclick="abfrageDistanceAPI();">Endpunkt per GPS erfassen</a>
+                <br>
+                <label for="dauer" >Dauer:</label>
                 <input type="text" id="dauer" placeholder="Dauer"/>
                 <br>
                 <br>
