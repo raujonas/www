@@ -2,7 +2,11 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     getAlleFahrtenDB();
-   
+    $('#fanlegen').on('click',addFahrt);
+    $(document).on('click', '#fabbrechen', fzuruecksetzen);
+    /*$(document).on('click', '#kundewaehlen option', function(){
+        zeigeKundeAn(this);
+    });*/
 }
       
 function alleFahrtenAnzeigen(tx, results){
@@ -15,6 +19,31 @@ function alleFahrtenAnzeigen(tx, results){
       $('#belegeuebersicht').listview().listview('refresh');         
     }          
 } 
+
+function addFahrt(){
+    var kunde = $('selectkunde').val();
+    var fnr = $('fnr').val();
+    var start = $('start').val();
+    var ende = $('ende').val();
+    var dauer = $('dauer').val();
+    var kilometer = $('kilometer').val();
+    
+    console.log(kunde);
+}
+
+function fzuruecksetzen(){
+    var kunde = $('selectkunde').select(0);
+    var fnr = $('fnr').val('');
+    var start = $('start').val('');
+    var ende = $('ende').val('');
+    var dauer = $('dauer').val('');
+    var kilometer = $('kilometer').val('');
+}
+
+function fahrtDarstellen(tx, results){
+    
+}
+
 //-> Distance Matrix API
 //Bei Google Maps Distance Matrix API handelt es sich um einen Dienst, der Reisezeiten und Entfernungen für eine Start- und Zielortmatrix bereitstellt.
 
