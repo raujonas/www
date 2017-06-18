@@ -24,11 +24,13 @@ function populateDB(tx) {
     tx.executeSql('DROP TABLE IF EXISTS KUNDEN');        //@Jonny, kein Autoincrement für die ID?
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
     tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
+    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (456, "Beste Firma2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
     
     //Tabelle für Fahrten
     tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
     tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, KNR, START, ENDE, KM, DAUER, DATUM)');
     tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (123, "Karlsruhe", "Mannheim", 100, 60, "01.06.2017")'); 
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (456, "Karlsruhe", "Frankfurt", 150, 70, "01.06.2017")'); 
     
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
@@ -75,6 +77,8 @@ function deleteKunde(knr){
 }
 
 //-------------------------------------Fahrten----------------------------------------------------------------
+//Fahrt hinzufügen
+//TODO
 
 //Alle Fahrten auslesen
 function getAlleFahrtenDB(){
@@ -85,7 +89,6 @@ function getAlleFahrtenDB(){
 
 //Alle Kunden bekommen für Fahrten (anderes Callback)
 function getAlleKundenfuerFahrt(){
-    console.log("KundefürFahrt");
     db.transaction(function(tx){
         tx.executeSql("SELECT * FROM Kunden ORDER BY nameunternehmen ASC", [], kundenInSelectMenu, errorCB);
     })

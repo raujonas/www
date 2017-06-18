@@ -12,37 +12,43 @@ function onDeviceReady() {
       
 function alleFahrtenAnzeigen(tx, results){
     var len = results.rows.length;  
-    $('#belegeuebersicht').empty();
+    $('#fahrtenuebersicht').empty();     
     if ( len > 0) {                           
       for(var i=0; i < len; i++){
-          $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-FNR="' + results.rows[i].FNR + '" data-transition="slide">' + results.rows[i].START +' - '+ results.rows[i].ENDE +' '+ results.rows[i].DATUM +'</a></li>');
+          $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-fnr="' + results.rows[i].FNR + '" data-transition="slide">' + results.rows[i].START +' - '+ results.rows[i].ENDE +' '+ results.rows[i].DATUM +'</a></li>');
       } 
-      $('#belegeuebersicht').listview().listview('refresh');         
+      $('#fahrtenuebersicht').listview().listview('refresh');         
     }          
 } 
 
 function kundenInSelectMenu (tx, results){
     //Alle Kunden in Select-Menü einfügen:
     $('#kundewaehlen').empty();
-    console.log(results);
     var len = results.rows.length;
     for (var i=0; i<len; i++){
-        console.log('<option value="'+ results.rows[i].KNR + '">' + results.rows[i].NAMEUNTERNEHMEN + '</option>');
         $('#kundewaehlen').append('<option value="'+ results.rows[i].KNR + '">' + results.rows[i].NAMEUNTERNEHMEN + '</option>');
     }
-    $('#kundewaehlen').listview('refresh');
+    $('#kundewaehlen').listview().listview('refresh');
 }
 
 function addFahrt(){
     var kunde = $('#selectkunde').val();
+    alert(kunde);
     var fnr = $('#fnr').val();
     var start = $('#start').val();
     var ende = $('#ende').val();
     var dauer = $('#dauer').val();
     var kilometer = $('#kilometer').val();
+    
+    //TODO
+    
+    
+    fzuruecksetzen();
 }
 
 function fzuruecksetzen(){
+    $('#kundewaehlen').empty();
+    $('#kundewaehlen').listview().listview('refresh');
     var kunde = $('#selectkunde').select(0);
     var fnr = $('#fnr').val('');
     var start = $('#start').val('');
@@ -52,6 +58,11 @@ function fzuruecksetzen(){
 }
 
 function fahrtDarstellen(tx, results){
+    $('#kundewaehlen').empty();
+    var len = results.rows.length;
+    $('#kundewaehlen').append('<option value="'+ results.rows[0].KNR + '" selected="selected">' + results.rows[0].NAMEUNTERNEHMEN + '</option>');
+    $('#kundewaehlen').val(results.rows[0].KNR).selectmenu('refresh');
+    
     $('#fnr').val(results.rows[0].fnr);
     $('#start').val(results.rows[0].START);
     $('#ende').val(results.rows[0].ENDE);

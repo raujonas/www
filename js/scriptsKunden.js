@@ -71,7 +71,7 @@ function kundenInListView(tx, results){
             var knr = results.rows[i].KNR;
             $('#kundenuebersicht').append('<li><a href="#kundeanlegen" data-knr="' + knr + '" data-transition="slide">' + results.rows[i].NAMEUNTERNEHMEN + '</a></li>');
         }
-    $('#kundenuebersicht').listview('refresh');
+    $('#kundenuebersicht').listview().listview('refresh');
     } else {
         alert("Tabelle ist leer");
     }
