@@ -2,9 +2,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     getAlleFahrtenDB();    
-    $('#neueFahrt').on('click', getAlleKundenfuerFahrt);
-    $('#fanlegen').on('click', addFahrt);
-    $(document).on('click', '#fabbrechen', fzuruecksetzen);
+    $('#neueFahrt').on('click',getAlleKundenfuerFahrt);
+    $('#fanlegen').on('click',addFahrt);
+    $(document).on('click', '#fabbrechen',fzuruecksetzen);
     $(document).on('click', '#fahrtenuebersicht a', function(){
         getFahrt(this);
     });
@@ -14,10 +14,10 @@ function alleFahrtenAnzeigen(tx, results){
     var len = results.rows.length;  
     $('#fahrtenuebersicht').empty();     
     if ( len > 0) {                           
-      for(var i=0; i < len; i++){
-          $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-fnr="' + results.rows[i].FNR + '" data-transition="slide">' + results.rows[i].START +' - '+ results.rows[i].ENDE +' '+ results.rows[i].DATUM +'</a></li>');
-      } 
-      $('#fahrtenuebersicht').listview().listview('refresh');         
+        for(var i=0; i < len; i++){
+            $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-fnr="' + results.rows[i].FNR + '" selected="selected" data-transition="slide">' + results.rows[i].START +' - '+ results.rows[i].ENDE +' '+ results.rows[i].DATUM +'</a></li>');
+        } 
+    $('#fahrtenuebersicht').listview().listview('refresh');         
     }          
 } 
 
@@ -28,33 +28,40 @@ function kundenInSelectMenu (tx, results){
     for (var i=0; i<len; i++){
         $('#kundewaehlen').append('<option value="'+ results.rows[i].KNR + '">' + results.rows[i].NAMEUNTERNEHMEN + '</option>');
     }
-    $('#kundewaehlen').listview().listview('refresh');
+    $('#kundewaehlen').val(results.rows[0].KNR).selectmenu('refresh');
 }
 
 function addFahrt(){
-    var kunde = $('#selectkunde').val();
-    alert(kunde);
+    var knr = $('#kundewaehlen').val();
     var fnr = $('#fnr').val();
+    var datum = $('#datum').val();
     var start = $('#start').val();
     var ende = $('#ende').val();
     var dauer = $('#dauer').val();
     var kilometer = $('#kilometer').val();
-    
-    //TODO
-    
-    
+        
+    if(fnr == ""){
+        console.log(knr, datum, start, ende, dauer, kilometer);
+        addFahrt(knr, start, ende, kilometer, dauer, datum);
+    } else {
+        console.log(fnr, knr, datum, start, ende, dauer, kilometer);
+        changeFahrt(fnr, knr, start, ende, kilometer, dauer, datum);
+    }
+    alleFahrtenAnzeigen();
     fzuruecksetzen();
+    history.back();
+
 }
 
 function fzuruecksetzen(){
     $('#kundewaehlen').empty();
     $('#kundewaehlen').listview().listview('refresh');
-    var kunde = $('#selectkunde').select(0);
-    var fnr = $('#fnr').val('');
-    var start = $('#start').val('');
-    var ende = $('#ende').val('');
-    var dauer = $('#dauer').val('');
-    var kilometer = $('#kilometer').val('');
+    $('#fnr').val('');
+    $('#start').val('');
+    $('#ende').val('');
+    $('#datum').val('');
+    $('#dauer').val('');
+    $('#kilometer').val('');
 }
 
 function fahrtDarstellen(tx, results){
@@ -66,8 +73,10 @@ function fahrtDarstellen(tx, results){
     $('#fnr').val(results.rows[0].fnr);
     $('#start').val(results.rows[0].START);
     $('#ende').val(results.rows[0].ENDE);
+    $('#datum').val(results.rows[0].DATUM);
     $('#dauer').val(results.rows[0].DAUER);
     $('#kilometer').val(results.rows[0].KM);
+    alert(results.rows[0].fnr);
 }
 
 //-> Distance Matrix API
