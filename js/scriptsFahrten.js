@@ -4,6 +4,7 @@ function onDeviceReady() {
     getAlleFahrtenDB();    
     $('#neueFahrt').on('click',getAlleKundenfuerFahrt);
     $('#fanlegen').on('click',addFahrt);
+    $('#kmberechnen').on('click',abfrageDistanceAPI);
     $(document).on('click', '#fabbrechen',fzuruecksetzen);
     $(document).on('click', '#fahrtenuebersicht a', function(){
         getFahrt(this);
@@ -41,13 +42,11 @@ function addFahrt(){
     var kilometer = $('#kilometer').val();
         
     if(fnr == ""){
-        console.log(knr, datum, start, ende, dauer, kilometer);
-        addFahrt(knr, start, ende, kilometer, dauer, datum);
+        addFahrtDB(knr, start, ende, kilometer, dauer, datum);
     } else {
-        console.log(fnr, knr, datum, start, ende, dauer, kilometer);
         changeFahrt(fnr, knr, start, ende, kilometer, dauer, datum);
     }
-    alleFahrtenAnzeigen();
+    getAlleFahrtenDB();
     fzuruecksetzen();
     history.back();
 
@@ -70,13 +69,14 @@ function fahrtDarstellen(tx, results){
     $('#kundewaehlen').append('<option value="'+ results.rows[0].KNR + '" selected="selected">' + results.rows[0].NAMEUNTERNEHMEN + '</option>');
     $('#kundewaehlen').val(results.rows[0].KNR).selectmenu('refresh');
     
-    $('#fnr').val(results.rows[0].fnr);
+    console.log(results);
+    $('#fnr').val(results.rows[0].FNR);
     $('#start').val(results.rows[0].START);
     $('#ende').val(results.rows[0].ENDE);
     $('#datum').val(results.rows[0].DATUM);
     $('#dauer').val(results.rows[0].DAUER);
     $('#kilometer').val(results.rows[0].KM);
-    alert(results.rows[0].fnr);
+    console.log(results.rows[0].FNR);
 }
 
 //-> Distance Matrix API
@@ -112,8 +112,7 @@ function fahrtDarstellen(tx, results){
 }
 */
 
-function abfrageDistanceAPI(){
-    standortGPS();    //extra Button
+/*function abfrageDistanceAPI(){
     var Start = "Deutschland+Karlsruhe+Kanalweg+101";  //Oder GPS: "49.0297141,8.3895348" geht auch
     var Ziel = "Frankfurt";
     
@@ -130,6 +129,31 @@ function abfrageDistanceAPI(){
           console.log("Kilometer :"+ergebnis.rows[0].elements[0].distance.text);
           //Dauer
           console.log("Kilometer :"+ergebnis.rows[0].elements[0].duration.text);          
+       } 
+       //Bei einem Fehler
+       else {
+          console.warn(request.statusText, request.responseText);
+       }
+    });
+    request.send();
+}*/
+
+function abfrageDistanceAPI(){
+    var Start = $('#start').val();;  //Oder GPS: "49.0297141,8.3895348" geht auch
+    var Ziel = $('#ende').val();;
+    
+    var request = new XMLHttpRequest();
+    //Anfrage URL
+    request.open("GET","https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins="+Start+"&destinations="+Ziel+"&key=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA");
+    request.addEventListener('load', function(event) {
+       //Bei Erfolg
+       if (request.status >= 200 && request.status < 300) {
+          //JSON parsen
+          var ergebnis = JSON.parse(request.responseText);
+          //Kilometer
+          //Dauer
+           $('#kilometer').val(ergebnis.rows[0].elements[0].distance.text);
+           $('#dauer').val(ergebnis.rows[0].elements[0].duration.text);
        } 
        //Bei einem Fehler
        else {

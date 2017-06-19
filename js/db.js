@@ -78,9 +78,8 @@ function deleteKunde(knr){
 
 //-------------------------------------Fahrten----------------------------------------------------------------
 //Fahrt hinzufügen
-function addFahrt(knr, start, ende, km, dauer, datum){
+function addFahrtDB(knr, start, ende, km, dauer, datum){
     db.transaction(function(tx){
-        console.log(knr, datum, start, ende, dauer, kilometer);
         tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (?,?,?,?,?,?)', [knr, start, ende, km, dauer, datum], successCB, errorCB);
     });
 }
@@ -88,7 +87,6 @@ function addFahrt(knr, start, ende, km, dauer, datum){
 //Fahrt ändern
 function changeFahrt(fnr, knr, start, ende, km, dauer, datum){
     db.transaction(function(tx){
-        console.log(fnr, knr, datum, start, ende, dauer, kilometer);
         console.log('UPDATE FAHRTEN SET knr="'+knr+'", start="'+start+'", ende="'+ende+'", km="'+km+'", dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";');
         tx.executeSql('UPDATE FAHRTEN SET knr="'+knr+'", start="'+start+'", ende="'+ende+'", km="'+km+'", dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";', [], successCB, errorCB);
     });
