@@ -25,7 +25,7 @@
                 <h1>Fahrtenbuch - Menü</h1>
             </div>
             <div role="main" class="ui-content">
-                <ul data-role="listview" data-inset="true" data-filter="true">
+                <ul data-role="listview" data-inset="true" data-filter="false">
                     <li>
                         <a href="#kunden" data-transition="slide">
                             <h2>Kunden verwalten</h2>
@@ -178,6 +178,18 @@
                 <h1>Statistik</h1>
             </div>
             <div role="main" class="ui-content">
+                <label for="selectkunde" class="select">Kunde auswählen:</label>
+                <select name="selectkunde" id="kundewaehlen">
+                    <!--Inhalt wird dynamisch befüllt-->
+                </select>
+                <a href="#" data-role="button" id="kundeauswerten" >Kunde auswerten</a>
+                <ul data-role="listview" data-inset="true" data-filter="true" id="fahrtenuebersicht">
+                    <!--Inhalt wird dynamisch befüllt-->
+                </ul>
+                <p>Gesamtkilometer:</p>
+                <input type="text" id="statistikkm" placeholder="Kilometer für gewählten Kunden ..."/>
+                <p>Gesamkosten:</p>
+                <input type="text" id="statistikkosten" placeholder="Kosten für gewählten Kunden ..."/>
             </div>
         </div>   
 <!---Einstellungen-------------------------------------------------------------------------->
