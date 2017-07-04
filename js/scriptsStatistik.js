@@ -20,7 +20,6 @@ function statistikDarstellen(tx, results){
     var gesamtkm = 0;
     for (var i=0; i<len; i++){
         gesamtkm = parseInt(gesamtkm + results.rows[i].KM);
-        alert(gesamtkm);
     }
     $('#statistikkm').val(gesamtkm);
 }
