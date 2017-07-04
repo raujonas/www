@@ -123,12 +123,10 @@ function GPStoAddressStart(latitude, longitude){
        if (request.status >= 200 && request.status < 300) {
           //JSON parsen
           var ergebnis = JSON.parse(request.responseText);
-<<<<<<< HEAD
           //Kilometer
           //Dauer
            $('#kilometer').val(parseInt(ergebnis.rows[0].elements[0].distance.value/1000));
            $('#dauer').val(ergebnis.rows[0].elements[0].duration.text);
-=======
           //console.info(request.responseText);
           var adresse = ergebnis.results[0].formatted_address;      
           $('#start').val(adresse);  
@@ -153,7 +151,6 @@ function GPStoAddressEnde(latitude, longitude){
           //console.info(request.responseText);
           var adresse = ergebnis.results[0].formatted_address;      
           $('#ende').val(adresse);  
->>>>>>> bc003cb5f44bd51efe4eea8111e8d444b86d50ea
        } 
        //Bei einem Fehler
        else {
