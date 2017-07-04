@@ -19,6 +19,7 @@ function standortGPSstart(){
     // current GPS coordinates    
     
     function onSuccess(position) {
+        /*
         console.log( 'Latitude: '          + position.coords.latitude          + '\n' +
                    'Longitude: '         + position.coords.longitude         + '\n' +
                    'Altitude: '          + position.coords.altitude          + '\n' +
@@ -26,10 +27,11 @@ function standortGPSstart(){
                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
                    'Heading: '           + position.coords.heading           + '\n' +
                    'Speed: '             + position.coords.speed             + '\n' +
-                   'Timestamp: '         + position.timestamp                + '\n');
-                   //8.3895348,49.0297141
-        $('#start').val(position.coords.latitude + "," + position.coords.longitude);
+                   'Timestamp: '         + position.timestamp                + '\n');         
+        */
         
+        //GPS in Adresse umrechnen und darstellen
+        GPStoAddressStart(position.coords.latitude, position.coords.longitude);       
    };
 
     // onError Callback receives a PositionError object
@@ -53,6 +55,7 @@ function standortGPSende(){
     // current GPS coordinates    
     
     function onSuccess(position) {
+        /*
         console.log( 'Latitude: '          + position.coords.latitude          + '\n' +
                    'Longitude: '         + position.coords.longitude         + '\n' +
                    'Altitude: '          + position.coords.altitude          + '\n' +
@@ -60,9 +63,11 @@ function standortGPSende(){
                    'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
                    'Heading: '           + position.coords.heading           + '\n' +
                    'Speed: '             + position.coords.speed             + '\n' +
-                   'Timestamp: '         + position.timestamp                + '\n');
-                   //8.3895348,49.0297141
-        $('#ende').val(position.coords.latitude + "," + position.coords.longitude);
+                   'Timestamp: '         + position.timestamp                + '\n');     
+        */
+        
+        //GPS in Adresse umrechnen und darstellen
+        GPStoAddressEnde(position.coords.latitude, position.coords.longitude); 
         
    };
 
