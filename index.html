@@ -16,6 +16,7 @@
         <script src="js/scriptsBelege.js"></script>    <!-- Funktionen für Belege -->
         <script src="js/scriptsFahrten.js"></script>   <!-- Funktionen für Fahrten -->
         <script src="js/gps.js"></script>    <!-- Funktionen für Fahrten -->
+        <script src="js/scriptsStatistik.js"></script>
                      
     </head>
     <body>
@@ -179,13 +180,10 @@
             </div>
             <div role="main" class="ui-content">
                 <label for="selectkunde" class="select">Kunde auswählen:</label>
-                <select name="selectkunde" id="kundewaehlen">
+                <select name="selectkunde" id="kundewaehlenstatistik">
                     <!--Inhalt wird dynamisch befüllt-->
                 </select>
                 <a href="#" data-role="button" id="kundeauswerten" >Kunde auswerten</a>
-                <ul data-role="listview" data-inset="true" data-filter="true" id="fahrtenuebersicht">
-                    <!--Inhalt wird dynamisch befüllt-->
-                </ul>
                 <p>Gesamtkilometer:</p>
                 <input type="text" id="statistikkm" placeholder="Kilometer für gewählten Kunden ..."/>
                 <p>Gesamkosten:</p>

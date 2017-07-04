@@ -106,6 +106,12 @@ function getAlleKundenfuerFahrt(){
     })
 }
 
+function getAlleKundenfuerStatistik(){
+    db.transaction(function(tx){
+        tx.executeSql("SELECT * FROM Kunden ORDER BY nameunternehmen ASC",[], kundenInSelectMenuStatistik, errorCB);
+    })
+}
+
 //Eine bestimmte Fahrt bekommen
 function getFahrt(fahrtElement){
     var fnr = $(fahrtElement).attr('data-fnr');
