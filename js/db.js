@@ -124,7 +124,7 @@ function kundeAuswerten(){
     var knr = $('#kundewaehlenstatistik').val();
     alert(knr);
     db.transaction(function(tx){
-        tx.executeSql("SELECT * FROM Fahrten", [], statistikDarstellen, errorCB);
+        tx.executeSql("SELECT * FROM Fahrten WHERE KNR=" + knr, [], statistikDarstellen, errorCB);
     })
 }
 
