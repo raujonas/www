@@ -17,7 +17,9 @@
         <script src="js/scriptsFahrten.js"></script>   <!-- Funktionen für Fahrten -->
         <script src="js/gps.js"></script>    <!-- Funktionen für Fahrten -->
         <script src="js/scriptsStatistik.js"></script>
-                     
+        <link rel="stylesheet" href="css/jquery.ui.datepicker.mobile.css" /> 
+        <script src="js/jQuery.ui.datepicker.js"></script>
+        <script src="js/jquery.ui.datepicker.mobile.js"></script>          
     </head>
     <body>
 <!---Homescreen----------------------------------------------------------------------------->
@@ -135,7 +137,7 @@
                 <a href="#" data-role="button" id="kmberechnen" onclick="abfrageDistanceAPI();">Kilometer berechnen</a>
                 <br>
                 <label for="datum" >Datum:</label>
-                <input type="text" id="datum" placeholder="Datum"/>
+                <input type="date" data-role="date" id="datum" placeholder="Datum"/>
                 <label for="dauer" >Dauer:</label>
                 <input type="text" id="dauer" placeholder="Dauer"/>
                 <br>
@@ -186,8 +188,8 @@
                 <a href="#" data-role="button" id="kundeauswerten" >Kunde auswerten</a>
                 <p>Gesamtkilometer:</p>
                 <input type="text" id="statistikkm" placeholder="Kilometer für gewählten Kunden ..."/>
-                <p>Gesamkosten:</p>
-                <input type="text" id="statistikkosten" placeholder="Kosten für gewählten Kunden ..."/>
+                <p>Gesamtzeit:</p>
+                <input type="text" id="statistikkosten" placeholder="Zeit für gewählten Kunden ..."/>
             </div>
         </div>   
 <!---Einstellungen-------------------------------------------------------------------------->
@@ -281,6 +283,10 @@
                 <h1>Standardeinstellungen wiederherstellen</h1>
             </div>
             <div role="main" class="ui-content">
+                <a href="#" data-role="button" id="kundeauswerten">Kunden zurücksetzen</a>
+                <a href="#" data-role="button" id="kundeauswerten">Fahrten zurücksetzen</a>
+                <a href="#" data-role="button" id="kundeauswerten">Belege zurücksetzen</a>
+                <a href="#" data-role="button" id="kundeauswerten">ALLES zurücksetzen</a>
             </div>
         </div>  
     </body>

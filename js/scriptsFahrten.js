@@ -16,7 +16,7 @@ function alleFahrtenAnzeigen(tx, results){
     $('#fahrtenuebersicht').empty();     
     if ( len > 0) {                           
         for(var i=0; i < len; i++){
-            $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-fnr="' + results.rows[i].FNR + '" selected="selected" data-transition="slide">' + results.rows[i].START +' - '+ results.rows[i].ENDE +' '+ results.rows[i].DATUM +'</a></li>');
+            $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-fnr="' + results.rows[i].FNR + '" selected="selected" data-transition="slide">' + results.rows[i].START +' - '+ results.rows[i].ENDE +' - '+ results.rows[i].DATUM +'</a></li>');
         } 
     $('#fahrtenuebersicht').listview().listview('refresh');         
     }          
@@ -33,13 +33,13 @@ function kundenInSelectMenu (tx, results){
 }
 
 function addFahrt(){
-    var knr = $('#kundewaehlen').val();
+    var knr = parseInt($('#kundewaehlen').val());
     var fnr = $('#fnr').val();
     var datum = $('#datum').val();
     var start = $('#start').val();
     var ende = $('#ende').val();
     var dauer = $('#dauer').val();
-    var kilometer = $('#kilometer').val();
+    var kilometer = parseInt($('#kilometer').val());
         
     if(fnr == ""){
         addFahrtDB(knr, start, ende, kilometer, dauer, datum);

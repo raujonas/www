@@ -29,8 +29,8 @@ function populateDB(tx) {
     //Tabelle für Fahrten
     tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
     tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, KNR, START, ENDE, KM, DAUER, DATUM)');
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (123, "Karlsruhe", "Mannheim", 100, 60, "01.06.2017")'); 
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (456, "Karlsruhe", "Frankfurt", 150, 70, "01.06.2017")'); 
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (123, "Karlsruhe", "Mannheim", 100, 60, "2017-06-01")'); 
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (456, "Karlsruhe", "Frankfurt", 150, 70, "2017-06-02")'); 
     
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
@@ -122,7 +122,6 @@ function getFahrt(fahrtElement){
 
 function kundeAuswerten(){
     var knr = $('#kundewaehlenstatistik').val();
-    alert(knr);
     db.transaction(function(tx){
         tx.executeSql("SELECT * FROM Fahrten WHERE KNR=" + knr, [], statistikDarstellen, errorCB);
     })
