@@ -122,8 +122,12 @@ function getFahrt(fahrtElement){
 
 function kundeAuswerten(){
     var knr = $('#kundewaehlenstatistik').val();
+    var anfang = $('#datum2').val();
+    var ende = $('#datum3').val();
+    console.log(anfang, ende);
+    console.log("SELECT * FROM Fahrten WHERE KNR=" + knr + " AND DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'");
     db.transaction(function(tx){
-        tx.executeSql("SELECT * FROM Fahrten WHERE KNR=" + knr, [], statistikDarstellen, errorCB);
+        tx.executeSql("SELECT * FROM Fahrten WHERE KNR=" + knr + " AND DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'", [], statistikDarstellen, errorCB);
     })
 }
 
