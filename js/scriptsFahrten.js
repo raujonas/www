@@ -152,7 +152,7 @@ function abfrageDistanceAPI(){
           var ergebnis = JSON.parse(request.responseText);
           //Kilometer
           //Dauer
-           $('#kilometer').val(ergebnis.rows[0].elements[0].distance.text);
+           $('#kilometer').val(parseInt(ergebnis.rows[0].elements[0].distance.value/1000));
            $('#dauer').val(ergebnis.rows[0].elements[0].duration.text);
        } 
        //Bei einem Fehler

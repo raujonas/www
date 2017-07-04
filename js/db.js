@@ -120,6 +120,14 @@ function getFahrt(fahrtElement){
     });
 }
 
+function kundeAuswerten(){
+    var knr = $('#kundewaehlenstatistik').val();
+    alert(knr);
+    db.transaction(function(tx){
+        tx.executeSql("SELECT * FROM Fahrten", [], statistikDarstellen, errorCB);
+    })
+}
+
 //------------------- Belege hinzufügen und auslesen-------------------
 //Hinzufügen
 function addBelegDB(datum, ort, tankstelle, betrag, bild){
