@@ -86,58 +86,6 @@ function fahrtDarstellen(tx, results){
 //Entfernung und Dauer Beispiel von Google (https://developers.google.com/maps/documentation/distance-matrix/start?hl=de) 
 //https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=YOUR_API_KEY
 
-//Beispiel JSON Ergebnis: 
-/*
-{
-   "destination_addresses" : [ "Frankfurt am Main, Deutschland" ],
-   "origin_addresses" : [ "Kanalweg 101, 76149 Karlsruhe, Deutschland" ],
-   "rows" : [
-      {
-         "elements" : [
-            {
-               "distance" : {
-                  "text" : "134 km",
-                  "value" : 133697
-               },
-               "duration" : {
-                  "text" : "1 Stunde, 36 Minuten",
-                  "value" : 5736
-               },
-               "status" : "OK"
-            }
-         ]
-      }
-   ],
-   "status" : "OK"
-}
-*/
-
-/*function abfrageDistanceAPI(){
-    var Start = "Deutschland+Karlsruhe+Kanalweg+101";  //Oder GPS: "49.0297141,8.3895348" geht auch
-    var Ziel = "Frankfurt";
-    
-    var request = new XMLHttpRequest();
-    //Anfrage URL
-    request.open("GET","https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins="+Start+"&destinations="+Ziel+"&key=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA");
-    request.addEventListener('load', function(event) {
-       //Bei Erfolg
-       if (request.status >= 200 && request.status < 300) {
-          console.log(request.responseText);
-          //JSON parsen
-          var ergebnis = JSON.parse(request.responseText);
-          //Kilometer
-          console.log("Kilometer :"+ergebnis.rows[0].elements[0].distance.text);
-          //Dauer
-          console.log("Kilometer :"+ergebnis.rows[0].elements[0].duration.text);          
-       } 
-       //Bei einem Fehler
-       else {
-          console.warn(request.statusText, request.responseText);
-       }
-    });
-    request.send();
-}*/
-
 function abfrageDistanceAPI(){
     var Start = $('#start').val();;  //Oder GPS: "49.0297141,8.3895348" geht auch
     var Ziel = $('#ende').val();;
@@ -152,8 +100,60 @@ function abfrageDistanceAPI(){
           var ergebnis = JSON.parse(request.responseText);
           //Kilometer
           //Dauer
+           $('#kilometer').val(ergebnis.rows[0].elements[0].distance.text);
+           $('#dauer').val(ergebnis.rows[0].elements[0].duration.text);
+       } 
+       //Bei einem Fehler
+       else {
+          console.warn(request.statusText, request.responseText);
+       }
+    });
+    request.send();
+}
+
+
+//https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
+
+function GPStoAddressStart(latitude, longitude){   
+    var request = new XMLHttpRequest();
+    //Anfrage URL
+    request.open("GET","https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&key=AIzaSyDR05F26qJcelogO0KFvURFKta04L6aGhw")
+    request.addEventListener('load', function(event) {
+       //Bei Erfolg
+       if (request.status >= 200 && request.status < 300) {
+          //JSON parsen
+          var ergebnis = JSON.parse(request.responseText);
+<<<<<<< HEAD
+          //Kilometer
+          //Dauer
            $('#kilometer').val(parseInt(ergebnis.rows[0].elements[0].distance.value/1000));
            $('#dauer').val(ergebnis.rows[0].elements[0].duration.text);
+=======
+          //console.info(request.responseText);
+          var adresse = ergebnis.results[0].formatted_address;      
+          $('#start').val(adresse);  
+       } 
+       //Bei einem Fehler
+       else {
+          console.warn(request.statusText, request.responseText);
+       }
+    });
+    request.send();
+}
+
+function GPStoAddressEnde(latitude, longitude){   
+    var request = new XMLHttpRequest();
+    //Anfrage URL
+    request.open("GET","https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&key=AIzaSyDR05F26qJcelogO0KFvURFKta04L6aGhw")
+    request.addEventListener('load', function(event) {
+       //Bei Erfolg
+       if (request.status >= 200 && request.status < 300) {
+          //JSON parsen
+          var ergebnis = JSON.parse(request.responseText);
+          //console.info(request.responseText);
+          var adresse = ergebnis.results[0].formatted_address;      
+          $('#ende').val(adresse);  
+>>>>>>> bc003cb5f44bd51efe4eea8111e8d444b86d50ea
        } 
        //Bei einem Fehler
        else {
