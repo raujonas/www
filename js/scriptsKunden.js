@@ -10,7 +10,7 @@ function startApp(){
     });
     $(document).on('swipeleft', '#kundenuebersicht a', function(){
         loescheKunde(this);
-    })
+    });
 }
 
 // Neuen Kunden anlegen - Werte werden ausgelesen und an die Datenbankfunktion übergeben

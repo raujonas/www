@@ -121,6 +121,17 @@ function getFahrt(fahrtElement){
     });
 }
 
+function deleteFahrt(kundeElement){
+    var fnr = $(kundeElement).attr('data-fnr');
+    if (confirm('Soll der Eintrag wirklich gelöscht werden?')){
+        db.transaction(function(tx){
+        tx.executeSql("DELETE FROM Fahrten WHERE FNR=" + fnr, [], successCB, errorCB);
+        });
+        getAlleFahrtenDB();
+    }
+    
+}
+
 function kundeAuswerten(){
     var knr = $('#kundewaehlenstatistik').val();
     var anfang = $('#datum2').val();

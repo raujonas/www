@@ -11,6 +11,9 @@ function onDeviceReady() {
     $(document).on('click', '#fahrtenuebersicht a', function(){
         getFahrt(this);
     });
+     $(document).on('swipeleft', '#fahrtenuebersicht a', function(){
+        deleteFahrt(this);
+    });
 }
       
 function alleFahrtenAnzeigen(tx, results){
