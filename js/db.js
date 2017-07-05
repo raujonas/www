@@ -24,13 +24,14 @@ function populateDB(tx) {
     tx.executeSql('DROP TABLE IF EXISTS KUNDEN');        //@Jonny, kein Autoincrement für die ID?
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
     tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
-    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (456, "Beste Firma2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
+    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (456, "Firma 2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
     
     //Tabelle für Fahrten
     tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
     tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, KNR, START, ENDE, KM, DAUER, DATUM)');
     tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (123, "Karlsruhe", "Mannheim", 100, 60, "2017-06-01")'); 
     tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (456, "Karlsruhe", "Frankfurt", 150, 70, "2017-06-02")'); 
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (456, "Karlsruhe", "Berlin", 150, 70, "2017-06-03")'); 
     
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
@@ -87,8 +88,8 @@ function addFahrtDB(knr, start, ende, km, dauer, datum){
 //Fahrt ändern
 function changeFahrt(fnr, knr, start, ende, km, dauer, datum){
     db.transaction(function(tx){
-        console.log('UPDATE FAHRTEN SET knr="'+knr+'", start="'+start+'", ende="'+ende+'", km="'+km+'", dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";');
-        tx.executeSql('UPDATE FAHRTEN SET knr="'+knr+'", start="'+start+'", ende="'+ende+'", km="'+km+'", dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";', [], successCB, errorCB);
+        console.log('UPDATE FAHRTEN SET knr='+knr+', start="'+start+'", ende="'+ende+'", km='+km+', dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";');
+        tx.executeSql('UPDATE FAHRTEN SET knr='+knr+', start="'+start+'", ende="'+ende+'", km='+km+', dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";', [], successCB, errorCB);
     });
 }
 
@@ -125,7 +126,7 @@ function kundeAuswerten(){
     var anfang = $('#datum2').val();
     var ende = $('#datum3').val();
     console.log(anfang, ende);
-    console.log("SELECT * FROM Fahrten WHERE KNR=" + knr + " AND DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'");
+    console.log("SELECT * FROM Fahrten WHERE DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'");
     db.transaction(function(tx){
         tx.executeSql("SELECT * FROM Fahrten WHERE KNR=" + knr + " AND DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'", [], statistikDarstellen, errorCB);
     })
