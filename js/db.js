@@ -22,21 +22,21 @@ function populateDB(tx) {
     
     //Tabelle für Kunden erstellen
     tx.executeSql('DROP TABLE IF EXISTS KUNDEN');        //@Jonny, kein Autoincrement für die ID?
-    tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
-    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (123, "Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
-    tx.executeSql('INSERT INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (456, "Firma 2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
+    tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
+    tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Firma 2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
     
     //Tabelle für Fahrten
     tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
     tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, KNR, START, ENDE, KM, DAUER, DATUM)');
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (123, "Karlsruhe", "Mannheim", 100, 60, "2017-06-01")'); 
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (456, "Karlsruhe", "Frankfurt", 150, 70, "2017-06-02")'); 
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (456, "Karlsruhe", "Berlin", 150, 70, "2017-06-03")'); 
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (1, "Karlsruhe", "Mannheim", 100, 60, "2017-06-01")'); 
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (2, "Karlsruhe", "Frankfurt", 150, 70, "2017-06-02")'); 
+    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (2, "Karlsruhe", "Berlin", 150, 70, "2017-06-03")'); 
     
     //Tabelle für Belege (Bilder)
     tx.executeSql('DROP TABLE IF EXISTS BELEGE');
     tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (bnr INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT, Ort TEXT, Tankstelle TEXT, Datum TEXT, Betrag REAL)');
-    tx.executeSql('INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag) VALUES ("Karlsruhe", "Aral", "01-02-17", 50)'); 
+    tx.executeSql('INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag) VALUES ("Karlsruhe", "Aral", "2017-06-03", 50)'); 
 }
 //Wenn was schief geht
 function errorCB(err) {
@@ -49,9 +49,16 @@ function successCB() {
 
 //------------------- Kunden verwalten -----------------------------------------
 //Kunde hinzufügen
-function addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
+function addKundeDB(nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
     db.transaction(function(tx){
-        tx.executeSql("INSERT OR REPLACE INTO KUNDEN (knr, nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (?,?,?,?,?,?,?,?,?)", [knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text], successCB, errorCB);
+        tx.executeSql("INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES (?,?,?,?,?,?,?,?)", [nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text], successCB, errorCB);
+    });
+}
+
+function changeKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
+    db.transaction(function(tx){
+        console.log('UPDATE KUNDEN SET nameunternehmen="'+nameunternehmen+'", ansprechpartner="'+ansprechpartner+'", telefonnummer="'+telefonnummer+'", strasse="'+strasse+'", plz="'+plz+'", stadt="'+stadt+'", land="'+land+'", infos="'+text+'" WHERE knr='+knr+';');
+        tx.executeSql('UPDATE KUNDEN SET  nameunternehmen="'+nameunternehmen+'", ansprechpartner="'+ansprechpartner+'", telefonnummer="'+telefonnummer+'", strasse="'+strasse+'", plz="'+plz+'", stadt="'+stadt+'", land="'+land+'", infos="'+text+'" WHERE knr='+knr+';', [], successCB, errorCB);
     });
 }
 

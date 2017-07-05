@@ -27,13 +27,13 @@ function addKunde(){
       var stadt = $('#stadt').val();
       var land = $('#land').val();
       var text = $('#infos').val();
-      
-      if (knr.length == 0) {             //@ Jonas lass doch mit autoincrement die nummer anlegen
-  		alert('Bitte Kundennummer angeben');
-  		return;
-      }
-          
-      addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
+        
+        if(knr == ""){   
+            addKundeDB(nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
+        }else{
+        //Falls Kunde bereits vorhanden -> ändern
+            changeKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
+        }     
       getAlleKunden();
       kzuruecksetzen();
       history.back();
@@ -70,6 +70,7 @@ function kundeDarstellen(tx, results){
 function kundenInListView(tx, results){
     var len = results.rows.length;
     $('#kundenuebersicht').empty();
+    console.log(results);
     if (len > 0){
         for (var i=0; i<len; i++){
             var knr = results.rows[i].KNR;
