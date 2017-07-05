@@ -25,7 +25,7 @@ function alleBelegeAnzeigen(tx, results){
 } 
 
 function bzuruecksetzen(){
-    $('#Datum').val('');
+    $('#datumtank').val('');
     $('#bnr').val('');
     $('#Ort').val('');
     $('#Tankstelle').val('');
@@ -40,7 +40,7 @@ function addBeleg(){
     }
     else{
       var bnr = $('#bnr').val();    
-      var datum = $('#Datum').val();
+      var datum = $('#datumtank').val();
       var ort = $('#Ort').val();
       var tankstelle = $('#Tankstelle').val();
       var betrag = $('#Betrag').val();
@@ -59,7 +59,7 @@ function addBeleg(){
 
 function belegDarstellen(tx, results){ 
     $('#bnr').val(results.rows[0].bnr);
-    $('#Datum').val(results.rows[0].Datum);
+    $('#datumtank').val(results.rows[0].Datum);
     $('#Ort').val(results.rows[0].Ort);
     $('#Tankstelle').val(results.rows[0].Tankstelle);
     $('#Betrag').val(results.rows[0].Betrag);
