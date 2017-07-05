@@ -1,12 +1,5 @@
 //cordova plugin add cordova-plugin-geolocation
 
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady() {
-    $('#startgps').on('click',standortGPSstart);
-    $('#endegps').on('click',standortGPSende);
-}
-
 function standortGPSstart(){ 
     //Zeitbeschränkung der Standorterfassung 
     var options = {

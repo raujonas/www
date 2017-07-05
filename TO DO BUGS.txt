@@ -1,0 +1,1 @@
+Swipe to delete funktion in Tankbelege fehlerhaft -> Liste wird nicht geupdatet

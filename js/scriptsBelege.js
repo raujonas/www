@@ -30,24 +30,31 @@ function bzuruecksetzen(){
     $('#Ort').val('');
     $('#Tankstelle').val('');
     $('#Betrag').val('');
+    $('#image').val('');
     $('#image').hide();
 }
 
 function addBeleg(){
-    var bnr = $('#bnr').val();    
-    var datum = $('#Datum').val();
-    var ort = $('#Ort').val();
-    var tankstelle = $('#Tankstelle').val();
-    var betrag = $('#Betrag').val();
-    var bild = $('#image').attr('src');
-    if(bnr == ""){   
-      addBelegDB(datum, ort, tankstelle, betrag, bild);
-    }else{
-      //Falls Beleg bereits vorhanden -> ändern
-      changeBelegDB(bnr, datum, ort, tankstelle, betrag, bild);
+    if($('#Ort').val()== ""){
+      alert("Bitte gebben Sie einen Ort an.");
     }
-    bzuruecksetzen();
-    getAlleBelege();   
+    else{
+      var bnr = $('#bnr').val();    
+      var datum = $('#Datum').val();
+      var ort = $('#Ort').val();
+      var tankstelle = $('#Tankstelle').val();
+      var betrag = $('#Betrag').val();
+      var bild = $('#image').attr('src');
+      if(bnr == ""){   
+        addBelegDB(datum, ort, tankstelle, betrag, bild);
+      }else{
+        //Falls Beleg bereits vorhanden -> ändern
+        changeBelegDB(bnr, datum, ort, tankstelle, betrag, bild);
+      }
+      bzuruecksetzen();
+      getAlleBelege();  
+      history.back();
+    } 
 }
 
 function belegDarstellen(tx, results){ 
@@ -56,9 +63,9 @@ function belegDarstellen(tx, results){
     $('#Ort').val(results.rows[0].Ort);
     $('#Tankstelle').val(results.rows[0].Tankstelle);
     $('#Betrag').val(results.rows[0].Betrag);
-
+    
     //Bild anzeigen wenn vorhanden
-    if (results.rows[0].Bild != null){
+    if (results.rows[0].Bild != null && results.rows[0].Bild != "undefined" && results.rows[0].Bild != ""){     
       $('#image').show();
       $('#image').attr('src', results.rows[0].Bild);
     }

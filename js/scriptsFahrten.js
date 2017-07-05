@@ -5,6 +5,8 @@ function onDeviceReady() {
     $('#neueFahrt').on('click',getAlleKundenfuerFahrt);
     $('#fanlegen').on('click',addFahrt);
     $('#kmberechnen').on('click',abfrageDistanceAPI);
+    $('#startgps').on('click',standortGPSstart);
+    $('#endegps').on('click',standortGPSende);
     $(document).on('click', '#fabbrechen',fzuruecksetzen);
     $(document).on('click', '#fahrtenuebersicht a', function(){
         getFahrt(this);
@@ -92,26 +94,37 @@ function abfrageDistanceAPI(){
     
     var request = new XMLHttpRequest();
     //Anfrage URL
-    request.open("GET","https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins="+Start+"&destinations="+Ziel+"&key=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA");
+    request.open("GET","https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins="+Start+"&destinations="+Ziel+"&key=AIzaSyDuGWHnapuM2Q4o2PLnL4457wZdJ1r-ZyA"); 
     request.addEventListener('load', function(event) {
        //Bei Erfolg
        if (request.status >= 200 && request.status < 300) {
-          //JSON parsen
-          var ergebnis = JSON.parse(request.responseText);
-          //Kilometer
-          //Dauer
-           $('#kilometer').val(parseInt(ergebnis.rows[0].elements[0].distance.value/1000));           
-           $('#dauer').val(ergebnis.rows[0].elements[0].duration.text);
+          //Notwendig, damit bei einem Fehlern nur eine Fehlermeldung ausgegeben wird, und nicht mehrere
+          var errorGefunden = false;
+          try{
+              //JSON parsen
+              var ergebnis = JSON.parse(request.responseText);
+               //Kilometer
+               //Dauer
+               $('#kilometer').val(parseInt(ergebnis.rows[0].elements[0].distance.value/1000));           
+               $('#dauer').val(ergebnis.rows[0].elements[0].duration.text);
+          }catch(err){
+               alert("Bitte überprüfen Sie Start- und Zieladresse.");
+          }  
        } 
        //Bei einem Fehler
        else {
+          alert("Fehler bei der Übertragung")
           console.warn(request.statusText, request.responseText);
        }
     });
+    request.onerror = function () {
+      alert("Bitte überprüfen Sie die Netzwerkverbindung.")
+    };
     request.send();
 }
 
-
+//-> GeoCode API
+//Rechnet GPS Länge und Breite in Adresse um
 //https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
 
 function GPStoAddressStart(latitude, longitude){   
