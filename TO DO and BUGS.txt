@@ -1,0 +1,2 @@
+Bei der Übersicht der Fahrten wäre es am besten wenn man nur den Kunden und das Datum sieht
+Fotos müssen bei einem Delet auch vom speicher gelöscht werden.

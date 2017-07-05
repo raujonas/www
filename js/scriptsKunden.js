@@ -15,25 +15,29 @@ function startApp(){
 
 // Neuen Kunden anlegen - Werte werden ausgelesen und an die Datenbankfunktion übergeben
 function addKunde(){
-    var knr = $('#knr').val();
-    var nameunternehmen = $('#nameunternehmen').val();
-    var ansprechpartner = $('#ansprechpartner').val();
-    var telefonnummer = $('#telefonnummer').val();
-    var strasse = $('#strasse').val();
-    var plz = $('#plz').val();
-    var stadt = $('#stadt').val();
-    var land = $('#land').val();
-    var text = $('#infos').val();
-    
-    if (knr.length == 0) {             //@ Jonas lass doch mit autoincrement die nummer anlegen
-		alert('Bitte Kundennummer angeben');
-		return;
+    if($('#nameunternehmen').val() == ""){
+      alert("Bitte geben Sie mindestens den Unternehmensnamen an.");
+    }else{    
+      var knr = $('#knr').val();
+      var nameunternehmen = $('#nameunternehmen').val();
+      var ansprechpartner = $('#ansprechpartner').val();
+      var telefonnummer = $('#telefonnummer').val();
+      var strasse = $('#strasse').val();
+      var plz = $('#plz').val();
+      var stadt = $('#stadt').val();
+      var land = $('#land').val();
+      var text = $('#infos').val();
+      
+      if (knr.length == 0) {             //@ Jonas lass doch mit autoincrement die nummer anlegen
+  		alert('Bitte Kundennummer angeben');
+  		return;
+      }
+          
+      addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
+      getAlleKunden();
+      kzuruecksetzen();
+      history.back();
     }
-        
-    addKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text);
-    getAlleKunden();
-    kzuruecksetzen();
-    history.back();
 }
 
 // Das Formular für einen neuen Kunden wird zurückgesetzt

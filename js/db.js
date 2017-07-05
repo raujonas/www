@@ -126,7 +126,7 @@ function kundeAuswerten(){
     var anfang = $('#datum2').val();
     var ende = $('#datum3').val();
     if(anfang > ende){
-      alert("Das Enddatum darf nicht vor dem Anfangsdatum liegen.");  
+      alert("Das Enddatum darf nicht vor dem Startdatum liegen.");  
     }else{
       console.log(anfang, ende);
       console.log("SELECT * FROM Fahrten WHERE DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'");
