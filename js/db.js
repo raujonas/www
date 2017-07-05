@@ -57,8 +57,8 @@ function addKundeDB(nameunternehmen, ansprechpartner, telefonnummer, strasse, pl
 
 function changeKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
     db.transaction(function(tx){
-        console.log('UPDATE KUNDEN SET nameunternehmen="'+nameunternehmen+'", ansprechpartner="'+ansprechpartner+'", telefonnummer="'+telefonnummer+'", strasse="'+strasse+'", plz="'+plz+'", stadt="'+stadt+'", land="'+land+'", infos="'+text+'" WHERE knr='+knr+';');
-        tx.executeSql('UPDATE KUNDEN SET  nameunternehmen="'+nameunternehmen+'", ansprechpartner="'+ansprechpartner+'", telefonnummer="'+telefonnummer+'", strasse="'+strasse+'", plz="'+plz+'", stadt="'+stadt+'", land="'+land+'", infos="'+text+'" WHERE knr='+knr+';', [], successCB, errorCB);
+        //console.log('UPDATE KUNDEN  SET KNR='+knr+', nameunternehmen="'+nameunternehmen+'", ansprechpartner="'+ansprechpartner+'", telefon="'+telefonnummer+'", strasse="'+strasse+'", plz="'+plz+'", stadt="'+stadt+'", land="'+land+'", infos="'+text+'" WHERE KNR="'+knr+'";');
+        tx.executeSql('UPDATE KUNDEN  SET KNR='+knr+', nameunternehmen="'+nameunternehmen+'", ansprechpartner="'+ansprechpartner+'", telefon="'+telefonnummer+'", strasse="'+strasse+'", plz="'+plz+'", stadt="'+stadt+'", land="'+land+'", infos="'+text+'" WHERE KNR="'+knr+'";', [], successCB, errorCB);
     });
 }
 
@@ -101,7 +101,7 @@ function addFahrtDB(knr, start, ende, km, dauer, datum){
 //Fahrt ändern
 function changeFahrt(fnr, knr, start, ende, km, dauer, datum){
     db.transaction(function(tx){
-        console.log('UPDATE FAHRTEN SET knr='+knr+', start="'+start+'", ende="'+ende+'", km='+km+', dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";');
+        //console.log('UPDATE FAHRTEN SET knr='+knr+', start="'+start+'", ende="'+ende+'", km='+km+', dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";');
         tx.executeSql('UPDATE FAHRTEN SET knr='+knr+', start="'+start+'", ende="'+ende+'", km='+km+', dauer="'+dauer+'", datum="'+datum+'" WHERE fnr="'+fnr+'";', [], successCB, errorCB);
     });
 }
