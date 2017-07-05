@@ -172,6 +172,17 @@ function getBeleg(belegElement){
       errorCB);
 }      
 
+//------------------- Stadardzustand -------------------
 
+function allReset(){
+    db.transaction(function(tx){
+        tx.executeSql("DELETE FROM Kunden", [], successCB, errorCB);
+        tx.executeSql("DELETE FROM Fahrten", [], successCB, errorCB);
+        tx.executeSql("DELETE FROM Belege", [], successCB, errorCB);
+    });
+    getAlleKunden();
+    getAlleFahrtenDB();
+    getAlleBelege();
+}
 
       

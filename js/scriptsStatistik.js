@@ -3,6 +3,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     getAlleKundenfuerStatistik();
     $('#kundeauswerten').on('click',kundeAuswerten);
+    $('#statistik').on('click',getAlleKundenfuerStatistik);
 }
 
 function kundenInSelectMenuStatistik(tx, results){
