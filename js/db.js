@@ -75,6 +75,12 @@ function deleteKunde(knr){
         tx.executeSql("DELETE FROM Kunden WHERE KNR=" + knr, [], successCB, errorCB);
     });
     getAlleKunden();
+    
+    db.transaction(function(tx){
+        tx.executeSql("DELETE FROM Fahrten WHERE KNR=" + knr, [], successCB, errorCB);
+    });
+    getAlleFahrtenDB();
+    
 }
 
 //-------------------------------------Fahrten----------------------------------------------------------------
