@@ -96,7 +96,7 @@ function changeFahrt(fnr, knr, start, ende, km, dauer, datum){
 //Alle Fahrten auslesen
 function getAlleFahrtenDB(){
     db.transaction(                            
-      function(tx){tx.executeSql("SELECT * FROM FAHRTEN", [], alleFahrtenAnzeigen, errorCB);}, 
+      function(tx){tx.executeSql("SELECT * FROM FAHRTEN, KUNDEN WHERE FAHRTEN.KNR = KUNDEN.KNR", [], alleFahrtenAnzeigen, errorCB);}, 
       errorCB);
 }
 

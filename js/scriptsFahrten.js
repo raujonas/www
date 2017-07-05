@@ -21,7 +21,8 @@ function alleFahrtenAnzeigen(tx, results){
     $('#fahrtenuebersicht').empty();     
     if ( len > 0) {                           
         for(var i=0; i < len; i++){
-            $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-fnr="' + results.rows[i].FNR + '" selected="selected" data-transition="slide">' + results.rows[i].START +' - '+ results.rows[i].ENDE +' - '+ results.rows[i].DATUM +'</a></li>');
+            console.log(results);
+            $('#fahrtenuebersicht').append('<li><a href="#fahrtanlegen" data-fnr="' + results.rows[i].FNR + '" selected="selected" data-transition="slide">' + results.rows[i].NAMEUNTERNEHMEN +' - '+ results.rows[i].DATUM +'</a></li>');
         } 
     $('#fahrtenuebersicht').listview().listview('refresh');         
     }          
