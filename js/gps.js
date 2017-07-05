@@ -29,7 +29,7 @@ function standortGPSstart(){
 
     // onError Callback receives a PositionError object
     function onError(error) {
-        alert('code: '    + error.code    + '\n' +
+        console.log('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
 
@@ -66,7 +66,7 @@ function standortGPSende(){
 
     // onError Callback receives a PositionError object
     function onError(error) {
-        alert('code: '    + error.code    + '\n' +
+        console.log('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
 

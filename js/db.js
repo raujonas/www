@@ -125,11 +125,15 @@ function kundeAuswerten(){
     var knr = $('#kundewaehlenstatistik').val();
     var anfang = $('#datum2').val();
     var ende = $('#datum3').val();
-    console.log(anfang, ende);
-    console.log("SELECT * FROM Fahrten WHERE DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'");
-    db.transaction(function(tx){
+    if(anfang > ende){
+      alert("Das Enddatum darf nicht vor dem Anfangsdatum liegen.");  
+    }else{
+      console.log(anfang, ende);
+      console.log("SELECT * FROM Fahrten WHERE DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'");
+      db.transaction(function(tx){
         tx.executeSql("SELECT * FROM Fahrten WHERE KNR=" + knr + " AND DATUM >= '" + anfang + "' AND DATUM <= '" + ende + "'", [], statistikDarstellen, errorCB);
-    })
+      })
+    }
 }
 
 //------------------- Belege hinzufügen und auslesen-------------------
