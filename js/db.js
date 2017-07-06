@@ -21,10 +21,10 @@ function populateDB(tx) {
     tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
     
     //Tabelle für Kunden erstellen
-    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');        //@Jonny, kein Autoincrement für die ID?
+    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');        
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
-    tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Beste Firma", "Theo Test", "12345/678910", "Am Weg", 777, "Testhausen", "Ustestikan", "Was1GeileNotiz")');
-    tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Firma 2", "Theo Test2", "12345/6789102", "Am Weg2", 7772, "Testhausen2", "Ustestikan2", "Was1GeileNotiz2")');
+    tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Beste Firma", "Theo Test", "123/456", "Am Weg", 12345, "Testhausen", "Deutschland", "BlaBlaBla")');
+    tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Firma 2", "Martina Mustermann", "123/456", "Am Weg2", 23456, "Testhausen2", "Deutschland", "BlaBlaBla")');
     
     //Tabelle für Fahrten
     tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
@@ -44,7 +44,7 @@ function errorCB(err) {
 }
 //bei Erfolg
 function successCB() {
-    alert("success!");
+    //alert("success!");
 }
 
 //------------------- Kunden verwalten -----------------------------------------
