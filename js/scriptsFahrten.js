@@ -151,6 +151,9 @@ function GPStoAddressStart(latitude, longitude){
           console.warn(request.statusText, request.responseText);
        }
     });
+    request.onerror = function () {
+      alert("Bitte überprüfen Sie die Netzwerkverbindung.")
+    };
     request.send();
 }
 
@@ -172,5 +175,8 @@ function GPStoAddressEnde(latitude, longitude){
           console.warn(request.statusText, request.responseText);
        }
     });
+    request.onerror = function () {
+      alert("Bitte überprüfen Sie die Netzwerkverbindung.")
+    };
     request.send();
 }
