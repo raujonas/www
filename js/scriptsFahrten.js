@@ -103,10 +103,10 @@ function abfrageDistanceAPI(){
        //Bei Erfolg
        if (request.status >= 200 && request.status < 300) {
           //Notwendig, damit bei einem Fehlern nur eine Fehlermeldung ausgegeben wird, und nicht mehrere
-          var errorGefunden = false;
           try{
               //JSON parsen
               var ergebnis = JSON.parse(request.responseText);
+              console.info(request.responseText);
                //Kilometer
                //Dauer
                $('#kilometer').val(parseInt(ergebnis.rows[0].elements[0].distance.value/1000));           
@@ -138,16 +138,21 @@ function GPStoAddressStart(latitude, longitude){
     request.addEventListener('load', function(event) {
        //Bei Erfolg
        if (request.status >= 200 && request.status < 300) {
-          //JSON parsen
-          var ergebnis = JSON.parse(request.responseText);
-          //Kilometer
-          //Dauer
-          //console.info(request.responseText);
-          var adresse = ergebnis.results[0].formatted_address;      
-          $('#start').val(adresse);  
+          try{  
+            //JSON parsen
+            var ergebnis = JSON.parse(request.responseText);
+            console.info(request.responseText);
+            //Kilometer
+            //Dauer         
+            var adresse = ergebnis.results[0].formatted_address;      
+            $('#start').val(adresse);  
+          }catch(err){
+               alert("Fehler in den übermittelten GPS-Daten");
+          } 
        } 
        //Bei einem Fehler
        else {
+          alert("Es ist ein Fehler aufgetreten.");
           console.warn(request.statusText, request.responseText);
        }
     });
@@ -164,14 +169,19 @@ function GPStoAddressEnde(latitude, longitude){
     request.addEventListener('load', function(event) {
        //Bei Erfolg
        if (request.status >= 200 && request.status < 300) {
-          //JSON parsen
-          var ergebnis = JSON.parse(request.responseText);
-          //console.info(request.responseText);
-          var adresse = ergebnis.results[0].formatted_address;      
-          $('#ende').val(adresse);  
+          try{
+              //JSON parsen
+              var ergebnis = JSON.parse(request.responseText);
+              console.info(request.responseText);
+              var adresse = ergebnis.results[0].formatted_address;      
+              $('#ende').val(adresse);  
+          }catch(err){
+               alert("Fehler in den übermittelten GPS-Daten");
+          } 
        } 
        //Bei einem Fehler
        else {
+          alert("Es ist ein Fehler aufgetreten.");
           console.warn(request.statusText, request.responseText);
        }
     });
