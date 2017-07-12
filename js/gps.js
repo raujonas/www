@@ -1,5 +1,6 @@
 //cordova plugin add cordova-plugin-geolocation
 
+//Standort des Startpunkts erfassen
 function standortGPSstart(){ 
     //Zeitbeschränkung der Standorterfassung 
     var options = {
@@ -33,9 +34,11 @@ function standortGPSstart(){
               'message: ' + error.message + '\n');
     }
 
+    //Standortbestimmung starten
     navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 }
 
+//Standort des Endpunkts erfassen
 function standortGPSende(){ 
     //Zeitbeschränkung der Standorterfassung 
     var options = {
@@ -71,6 +74,6 @@ function standortGPSende(){
               'message: ' + error.message + '\n');
         alert("Bitte überprüfen sie Ihre GPS-Einstellungen.");
     }
-
+    //standortbestimmung starten
     navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 }

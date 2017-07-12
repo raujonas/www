@@ -4,6 +4,7 @@ function onDeviceReady() {
     console.log(navigator.camera);    //Aktivert den ADB Log der Kamera
 }
 
+//Mit Kamera ein Bild aufnehmen
 function aufnehmen() {                //Kamera starten
       navigator.camera.getPicture(onSuccess, onFail, { 
       quality: 50,
@@ -11,9 +12,8 @@ function aufnehmen() {                //Kamera starten
    });
 
    function onSuccess(imageData) {     // Wenn ein Bild erfolgreich aufgenommen wurde
-      $('#image').show();
+      $('#image').show();               //Bild anzeigen
       $('#image').attr('src', imageData);
-      //$('#camera').hide();
    }
 
    function onFail(message) {         //Wenn es beim Kamerea-Aufruf zu einem Fehler gekommen ist

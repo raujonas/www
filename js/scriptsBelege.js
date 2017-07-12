@@ -12,7 +12,7 @@ function onDeviceReady() {
     })
 }
 
-//Belege Kurzübersicht
+//Belege in der Übersichtsseite darstellen
 function alleBelegeAnzeigen(tx, results){
     var len = results.rows.length;   
     $('#belegeuebersicht').empty();
@@ -24,6 +24,7 @@ function alleBelegeAnzeigen(tx, results){
     }          
 } 
 
+//Felder in denen Daten der Belege eingetragen wurden zurücksetzen
 function bzuruecksetzen(){
     $('#datumtank').val('');
     $('#bnr').val('');
@@ -34,7 +35,9 @@ function bzuruecksetzen(){
     $('#image').hide();
 }
 
+//Beleg zur Datenbank hinzufügen
 function addBeleg(){
+    //Es muss mindestens ein Ort angegeben werden
     if($('#Ort').val()== ""){
       alert("Bitte gebben Sie einen Ort an.");
     }
@@ -45,10 +48,12 @@ function addBeleg(){
       var tankstelle = $('#Tankstelle').val();
       var betrag = $('#Betrag').val();
       var bild = $('#image').attr('src');
+      //Prüfuen ob Beleg bereits vorhanden ist und geändert werden soll, oder ob er neu angelegt werden soll
       if(bnr == ""){   
+        //neuen Beleg anlegen
         addBelegDB(datum, ort, tankstelle, betrag, bild);
       }else{
-        //Falls Beleg bereits vorhanden -> ändern
+        //Beleg vorhanen -> ändern
         changeBelegDB(bnr, datum, ort, tankstelle, betrag, bild);
       }
       bzuruecksetzen();
@@ -57,6 +62,7 @@ function addBeleg(){
     } 
 }
 
+//Den ausgewählten Beleg anzeigen (Felder füllen)
 function belegDarstellen(tx, results){ 
     $('#bnr').val(results.rows[0].bnr);
     $('#datumtank').val(results.rows[0].Datum);
@@ -64,13 +70,14 @@ function belegDarstellen(tx, results){
     $('#Tankstelle').val(results.rows[0].Tankstelle);
     $('#Betrag').val(results.rows[0].Betrag);
     
-    //Bild anzeigen wenn vorhanden
+    //Tankbeleg (Bild) anzeigen wenn vorhanden
     if (results.rows[0].Bild != null && results.rows[0].Bild != "undefined" && results.rows[0].Bild != ""){     
       $('#image').show();
       $('#image').attr('src', results.rows[0].Bild);
     }
 }
 
+//Beleg löschen
 function loescheBeleg(belegElement){
     var bnr = $(belegElement).attr('data-bnr');
     if (confirm('Soll der Eintrag wirklich gelöscht werden?')){

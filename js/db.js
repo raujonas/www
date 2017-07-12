@@ -120,6 +120,7 @@ function getAlleKundenfuerFahrt(){
     })
 }
 
+//Alle Kunden bekommen für Statistik (anderes Callback)
 function getAlleKundenfuerStatistik(){
     db.transaction(function(tx){
         tx.executeSql("SELECT * FROM Kunden ORDER BY nameunternehmen ASC",[], kundenInSelectMenuStatistik, errorCB);
@@ -134,6 +135,7 @@ function getFahrt(fahrtElement){
     });
 }
 
+//Fahrten löschen
 function deleteFahrt(kundeElement){
     var fnr = $(kundeElement).attr('data-fnr');
     if (confirm('Soll der Eintrag wirklich gelöscht werden?')){
@@ -145,6 +147,7 @@ function deleteFahrt(kundeElement){
     
 }
 
+//Kunden auswerten
 function kundeAuswerten(){
     var knr = $('#kundewaehlenstatistik').val();
     var anfang = $('#datum2').val();
@@ -201,7 +204,7 @@ function getBeleg(belegElement){
 }      
 
 //------------------- Stadardzustand -------------------
-
+//Alle Datenbanken resetten
 function allReset(){
     db.transaction(function(tx){
         tx.executeSql("DELETE FROM Kunden", [], successCB, errorCB);
