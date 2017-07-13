@@ -82,7 +82,6 @@ function kundenInListView(tx, results){
     }
 }
 
-// @ Jonas, die 2 Zeilen kannst du auch in getKunde machen und das kundeElement direkt übergeben
 function zeigeKundeAn(kundeElement){
     var knr = $(kundeElement).attr('data-knr');
     getKunde(knr);

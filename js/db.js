@@ -45,6 +45,7 @@ function addKundeDB(nameunternehmen, ansprechpartner, telefonnummer, strasse, pl
     });
 }
 
+//Kunde ändern
 function changeKundeDB(knr, nameunternehmen, ansprechpartner, telefonnummer, strasse, plz, stadt, land, text){
     db.transaction(function(tx){
         //console.log('UPDATE KUNDEN  SET KNR='+knr+', nameunternehmen="'+nameunternehmen+'", ansprechpartner="'+ansprechpartner+'", telefon="'+telefonnummer+'", strasse="'+strasse+'", plz="'+plz+'", stadt="'+stadt+'", land="'+land+'", infos="'+text+'" WHERE KNR="'+knr+'";');
@@ -194,7 +195,7 @@ function getBeleg(belegElement){
 }      
 
 //------------------- Stadardzustand -------------------
-//Alle Datenbanken resetten
+//Alle Tabellen zurücksetzen
 function allReset(){
     db.transaction(function(tx){
         tx.executeSql("DELETE FROM Kunden", [], successCB, errorCB);
