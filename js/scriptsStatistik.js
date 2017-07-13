@@ -6,6 +6,7 @@ function onDeviceReady() {
     $('#statistik').on('click',getAlleKundenfuerStatistik);
 }
 
+//Kunden in das SelectMenu zur Kundenauswahl in der Statistik-Funktion einfügen
 function kundenInSelectMenuStatistik(tx, results){
     $('#kundewaehlenstatistik').empty();
     var len = results.rows.length;
@@ -15,6 +16,7 @@ function kundenInSelectMenuStatistik(tx, results){
     $('#kundewaehlen').val(results.rows[0].KNR).selectmenu('refresh');
 }
 
+//Aus der Datenbank abgefragte Werte als Statistik darstellen
 function statistikDarstellen(tx, results){
     console.log(results);
     var len = results.rows.length;
