@@ -24,3 +24,9 @@ function statistikDarstellen(tx, results){
     }
     $('#statistikkm').val(gesamtkm);
 }
+
+function statistikZuruecksetzen(){
+     $('#datum2').val('');
+     $('#datum3').val('');     
+     $('#statistikkm').val('');     
+}

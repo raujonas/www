@@ -14,29 +14,19 @@ function onDeviceReady() {
 //-----------------------Datenbank erstellen------------------------------------
 //Was soll erstellt werden?
 function populateDB(tx) {
-    //Tabelle für Tests
-    tx.executeSql('DROP TABLE IF EXISTS DEMO');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
-    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
-    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
-    
-    //Tabelle für Kunden erstellen
-    tx.executeSql('DROP TABLE IF EXISTS KUNDEN');        
+    //tx.executeSql('DROP TABLE IF EXISTS BELEGE');
+      
+    //Tabelle für Kunden erstellen  
     tx.executeSql('CREATE TABLE IF NOT EXISTS KUNDEN (KNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, NAMEUNTERNEHMEN, ANSPRECHPARTNER, TELEFON, STRASSE, PLZ, STADT, LAND, INFOS)');
-    tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Beste Firma", "Theo Test", "123/456", "Am Weg", 12345, "Testhausen", "Deutschland", "BlaBlaBla")');
-    tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Firma 2", "Martina Mustermann", "123/456", "Am Weg2", 23456, "Testhausen2", "Deutschland", "BlaBlaBla")');
+    //tx.executeSql('INSERT INTO KUNDEN (nameunternehmen, ansprechpartner, telefon, strasse, plz, stadt, land, infos) VALUES ("Beste Firma", "Theo Test", "123/456", "Am Weg", 12345, "Testhausen", "Deutschland", "BlaBlaBla")');
     
     //Tabelle für Fahrten
-    tx.executeSql('DROP TABLE IF EXISTS FAHRTEN');
     tx.executeSql('CREATE TABLE IF NOT EXISTS FAHRTEN (FNR INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, KNR, START, ENDE, KM, DAUER, DATUM)');
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (1, "Karlsruhe", "Mannheim", 100, 60, "2017-06-01")'); 
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (2, "Karlsruhe", "Frankfurt", 150, 70, "2017-06-02")'); 
-    tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (2, "Karlsruhe", "Berlin", 150, 70, "2017-06-03")'); 
+    //tx.executeSql('INSERT INTO FAHRTEN (KNR, START, ENDE, KM, DAUER, DATUM) VALUES (1, "Karlsruhe", "Mannheim", 100, 60, "2017-06-01")'); 
     
     //Tabelle für Belege (Bilder)
-    tx.executeSql('DROP TABLE IF EXISTS BELEGE');
     tx.executeSql('CREATE TABLE IF NOT EXISTS BELEGE (bnr INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Bild TEXT, Ort TEXT, Tankstelle TEXT, Datum TEXT, Betrag REAL)');
-    tx.executeSql('INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag) VALUES ("Karlsruhe", "Aral", "2017-06-03", 50)'); 
+    //tx.executeSql('INSERT INTO BELEGE (Ort, Tankstelle, Datum, Betrag) VALUES ("Karlsruhe", "Aral", "2017-06-03", 50)'); 
 }
 //Wenn was schief geht
 function errorCB(err) {
@@ -211,6 +201,10 @@ function allReset(){
         tx.executeSql("DELETE FROM Fahrten", [], successCB, errorCB);
         tx.executeSql("DELETE FROM Belege", [], successCB, errorCB);
     });
+    statistikZuruecksetzen();
+    kzuruecksetzen();
+    fzuruecksetzen();
+    bzuruecksetzen();
     getAlleKunden();
     getAlleFahrtenDB();
     getAlleBelege();
