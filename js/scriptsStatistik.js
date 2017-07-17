@@ -3,7 +3,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     getAlleKundenfuerStatistik();
     $('#kundeauswerten').on('click',kundeAuswerten);
-    $('#statistik').on('click',getAlleKundenfuerStatistik);
 }
 
 //Kunden in das SelectMenu zur Kundenauswahl in der Statistik-Funktion einfügen
@@ -13,7 +12,7 @@ function kundenInSelectMenuStatistik(tx, results){
     for (var i=0; i<len; i++){
         $('#kundewaehlenstatistik').append('<option value="'+ results.rows[i].KNR + '">' + results.rows[i].NAMEUNTERNEHMEN + '</option>');
     }
-    $('#kundewaehlen').val(results.rows[0].KNR).selectmenu('refresh');
+    $('#kundewaehlenstatistik').val(results.rows[0].KNR).selectmenu('refresh');
 }
 
 //Aus der Datenbank abgefragte Werte als Statistik darstellen
