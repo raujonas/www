@@ -4,6 +4,7 @@ function onDeviceReady() {
     getAlleKundenfuerStatistik();
     //$('#statistik').on('click',getAlleKundenfuerStatistik);
     $('#kundeauswerten').on('click',kundeAuswerten);
+    $('#statistikback').on('click',statistikZuruecksetzen);
 }
 
 //Kunden in das SelectMenu zur Kundenauswahl in der Statistik-Funktion einfügen
