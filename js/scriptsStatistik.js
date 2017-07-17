@@ -2,8 +2,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     getAlleKundenfuerStatistik();
+    //$('#statistik').on('click',getAlleKundenfuerStatistik);
     $('#kundeauswerten').on('click',kundeAuswerten);
-    $('#statistik').on('click',getAlleKundenfuerStatistik);
 }
 
 //Kunden in das SelectMenu zur Kundenauswahl in der Statistik-Funktion einfügen

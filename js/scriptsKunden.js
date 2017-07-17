@@ -36,6 +36,7 @@ function addKunde(){
         }     
       getAlleKunden();
       kzuruecksetzen();
+        getAlleKundenfuerStatistik();
       history.back();
     }
 }
@@ -91,5 +92,6 @@ function loescheKunde(kundeElement){
     var knr = $(kundeElement).attr('data-knr');
     if (confirm('Soll der Eintrag wirklich gelöscht werden?')){
         deleteKunde(knr);
+        getAlleKundenfuerStatistik();
     }
 }
